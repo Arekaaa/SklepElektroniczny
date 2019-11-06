@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #6699cc;
+}
+
+h1{
+    text-align: center;
+    color:#294680;
+    font-family: Cambria;
+}
+#logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+#loginButtonDiv{
+    position:fixed;
+    right:50px;
+    top:50px;
+}
+
+#loginButton:link, #loginButton:visited {
+    background-color:#6699cc; /* kolor wypełnienia*/
+    color:#294680; /* kolor napisu wewnątrz*/
+    text-align:center;
+    text-decoration:none;
+    font-family: Cambria;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 0 8px #294680;
+    display:inline-block;
+    padding:30px 50px;
+}
+#loginButton:hover {
+    background-color:#5799db;
+
+}
+#loginButton:active {
+    background-color:#4c99e6;
+}
+
+#footer {
+    position: fixed;
+    font-size:20px;
+    font-weight: bold;
+    font-family: Cambria;
+    left: 0;
+    bottom: 4cm;
+    width: 100%;
+    padding-top:10px;
+    padding-bottom:10px;
+    color: #294680;
+    text-align: center;
+}
+

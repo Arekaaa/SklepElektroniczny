@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #6699cc;
+}
+
+h1{
+    text-align: center;
+    color:#294680;
+    font-family: Cambria;
+}
+p {
+    text-align: center;
+    color: #294680;
+    font-family: Cambria;
+    font-size: 20px;
+}
+#textHome{
+    text-align: center;
+    color:#294680;
+    font-family: Cambria;
+    font-size:20px;
+    font-weight: bold;
+}
+#homeButtonDiv{
+    position:fixed;
+    left:50px;
+    top:50px;
+}
+#przyciskHome{
+    position:fixed;
+    left:120px;
+}
+
+
+#loginForm{
+
+    height:420px;
+    width:600px;
+    background-color:silver;
+    display:block;
+    margin:auto;
+
+    /* albo border-radius:15px */
+    border-radius: 15px;
+
+
+    font-family:Cambria;
+    font-size:24pt;
+    color:#4299f0;
+    text-shadow:0 0 1px blue;
+    box-shadow: 0 0 15px blue;
+}
+
+#login{
+    margin-left:90px;
+    width:200px;
+    height:25px;
+    text-align:center;
+}
+#haslo{
+    margin-left:70px;
+    width:200px;
+    height:25px;
+    text-align:center;
+  }
+#login:focus, #haslo:focus{
+    outline: 4px solid #4299f0;
+}
+#login:hover, #haslo:hover{
+    background-color:#cce6ff;
+}
+
+#zalogujButton{
+    display: block;
+    height:50px;
+    width:120px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:30px;
+    font-family: Cambria;
+    font-size: 30px;
+
+
+}
+#zalogujButton:hover{
+    outline: 5px solid #80bfff;
+}
+
+#rejestrujButton{
+    display: block;
+    height:50px;
+    width:150px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:30px;
+    font-family: Cambria;
+    font-size: 20px;
+}
+#rejestrujButton:hover{
+    outline: 5px solid #80bfff;
+}
