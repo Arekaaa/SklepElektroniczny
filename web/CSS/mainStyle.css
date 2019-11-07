@@ -11,6 +11,13 @@ h1{
     color:#294680;
     font-family: Cambria;
 }
+p {
+    text-align: center;
+    color: #294680;
+    font-family: Cambria;
+    font-size: 30px;
+    font-weight: bold;
+}
 #logo{
     display: block;
     margin-left: auto;
@@ -18,13 +25,11 @@ h1{
     max-width: 100%;
     height: auto;
 }
-
 #loginButtonDiv{
     position:fixed;
     right:50px;
-    top:50px;
+    top:20px;
 }
-
 #loginButton:link, #loginButton:visited {
     background-color:#6699cc; /* kolor wypełnienia*/
     color:#294680; /* kolor napisu wewnątrz*/
@@ -44,7 +49,6 @@ h1{
 #loginButton:active {
     background-color:#4c99e6;
 }
-
 #footer {
     position: fixed;
     font-size:20px;
@@ -58,4 +62,10 @@ h1{
     color: #294680;
     text-align: center;
 }
-
+#textHome{
+    text-align: center;
+    color:#294680;
+    font-family: Cambria;
+    font-size:20px;
+    font-weight: bold;
+}

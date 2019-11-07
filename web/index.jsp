@@ -17,7 +17,8 @@
     <meta name="description" content="Projekt studencki dotyczący aplikacji webowej wspierającej sklep elektroniczny">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <link rel="Stylesheet" href="CSS/mainStyle.css" type="text/css">
+    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/mainStyle.css" type="text/css">
+    <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon" />
   </head>
 
   <body>
@@ -28,8 +29,6 @@
   <h1>Witaj na stronie głównej aplikacji wspomagającej sklep elektroniczny.<br/>
   Zaloguj się aby rozpocząć.
   </h1>
-  <%--<a href="${pageContext.request.contextPath}/login"> Zaloguj Się</a>  Do odwołania się do servletu --%>
-
 <div id="footer">
     Autorzy aplikacji:<br></br>
         Arkadiusz Pajor<br>

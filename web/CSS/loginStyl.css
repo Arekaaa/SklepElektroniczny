@@ -1,16 +1,21 @@
 * {
     box-sizing: border-box;
 }
-
 body{
     background-color: #6699cc;
 }
-
 h1{
     text-align: center;
     color:#294680;
     font-family: Cambria;
 }
+h2{
+     text-align: center;
+     color:red;
+     font-family: Cambria;
+     font-size:15px;
+     text-shadow:0 0 1px red;
+ }
 p {
     text-align: center;
     color: #294680;
@@ -33,27 +38,19 @@ p {
     position:fixed;
     left:120px;
 }
-
-
 #loginForm{
-
-    height:420px;
+    height:460px;
     width:600px;
     background-color:silver;
     display:block;
     margin:auto;
-
-    /* albo border-radius:15px */
     border-radius: 15px;
-
-
     font-family:Cambria;
     font-size:24pt;
     color:#4299f0;
     text-shadow:0 0 1px blue;
     box-shadow: 0 0 15px blue;
 }
-
 #login{
     margin-left:90px;
     width:200px;
@@ -72,7 +69,6 @@ p {
 #login:hover, #haslo:hover{
     background-color:#cce6ff;
 }
-
 #zalogujButton{
     display: block;
     height:50px;
@@ -82,13 +78,10 @@ p {
     margin-top:30px;
     font-family: Cambria;
     font-size: 30px;
-
-
 }
 #zalogujButton:hover{
     outline: 5px solid #80bfff;
 }
-
 #rejestrujButton{
     display: block;
     height:50px;
@@ -101,4 +94,9 @@ p {
 }
 #rejestrujButton:hover{
     outline: 5px solid #80bfff;
+}
+#labele{
+    position:relative;
+    top:20px;
+    left:20px;
 }

@@ -14,30 +14,39 @@
     <title>Zaloguj się</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="Stylesheet" href="CSS/loginStyle.css" type="text/css">
+    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/loginStyl.css" type="text/css">
+    <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon" />
 </head>
 
 <body>
 <h1>Panel logowania</h1>
 <div id="loginForm">
-<form action="${pageContext.request.contextPath}/login">
+    <form action="${pageContext.request.contextPath}/login" method="get">
+        <div id="labele">
+         Podaj swój login:
+            <input type="text" name="login" id="login"/><br><br/>
+         Podaj swoje hasło:
+            <input type="password" name="haslo" id="haslo"/></div><br/>
 
-    Podaj swój login:
-    <input type="text" name="login" id="login"/><br><br/>
-    Podaj swoje hasło:
-    <input type="password" name="haslo" id="haslo"/><br/>
-    <input type="submit" value="Zaloguj" id="zalogujButton"><br><br/>
-</form>
-    <form action="RegisterController">
-        <p>Nie masz konta ?</p>
+        <style type="text/css">
+            #login, #haslo {
+                outline: <%= request.getAttribute("fieldSettings") %>;
+            }
+        </style>
+
+        <input type="submit" value="Zaloguj" id="zalogujButton"><br/>
+        <h2>${alert} </h2>
+
+    </form>
+    <form action="RegisterController" method="get">
+        <p>Nie posiadasz konta ?</p>
         <input type="submit" value="Zarejestruj się" id="rejestrujButton">
     </form>
 </div>
 <div id="homeButtonDiv">
     <p id="textHome">Powrót na stronę główną</p>
-    <a href=index.jsp id="homeButton"> <img src="Images/home.png" alt="Przenosi na stronę główną" width="60" height="60" id="przyciskHome"></a> </div>
+    <a href=index.jsp id="homeButton"> <img src="Images/home.png" alt="Przenosi na stronę główną" width="60" height="60" id="przyciskHome"></a></div>
 <br/>
-
 
 
 </body>
