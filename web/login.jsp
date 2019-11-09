@@ -30,15 +30,15 @@
 
         <style type="text/css">
             #login, #haslo {
-                outline: <%= request.getAttribute("fieldSettings") %>;
+                outline: <%= request.getAttribute("fieldAlert") %>;
             }
         </style>
 
         <input type="submit" value="Zaloguj" id="zalogujButton"><br/>
-        <h2>${alert} </h2>
+        <h2>${alert} </h2> <h3>${registerAlert}</h3>
 
     </form>
-    <form action="RegisterController" method="get">
+    <form action="register.jsp" method="get">
         <p>Nie posiadasz konta ?</p>
         <input type="submit" value="Zarejestruj się" id="rejestrujButton">
     </form>

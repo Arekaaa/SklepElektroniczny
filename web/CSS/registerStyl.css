@@ -1,0 +1,63 @@
+
+#returnImage{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+#registerForm{
+    height:850px;
+    width:600px;
+    background-color:silver;
+    display:block;
+    margin:auto;
+    border-radius: 15px;
+    font-family:Cambria;
+    font-size:24pt;
+    color:#4299f0;
+    text-shadow:0 0 1px blue;
+    box-shadow: 0 0 15px blue;
+}
+#loginR{
+    margin-left:115px;
+    width:200px;
+    height:25px;
+    text-align:center;
+}
+#hasloR{
+    margin-left:115px;
+    width:200px;
+    height:25px;
+    text-align:center;
+}
+#hasloRepeat{
+    width:200px;
+    height:25px;
+    text-align:center;
+}
+#imie{
+    margin-left:135px;
+    width:200px;
+    height:25px;
+    text-align:center;
+}
+#nazwisko{
+    margin-left:65px;
+    width:200px;
+    height:25px;
+    text-align:center;
+}
+#mail{
+    margin-left:25px;
+    width:200px;
+    height:25px;
+    text-align:center;
+}
+#loginR:focus,#hasloR:focus,#hasloRepeat:focus,#imie:focus,#nazwisko:focus,#mail:focus{
+    outline: 4px solid #4299f0;
+}
+#loginR:hover,#hasloR:hover,#hasloRepeat:hover,#imie:hover,#nazwisko:hover,#mail:hover{
+    background-color:#cce6ff;
+}
