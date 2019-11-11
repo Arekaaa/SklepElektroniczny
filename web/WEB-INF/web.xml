@@ -12,11 +12,13 @@
         <url-pattern>/logged </url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name> registerController </servlet-name>
+        <servlet-name> RegisterController </servlet-name>
         <servlet-class>controller.RegisterController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name> registerController </servlet-name>
+        <servlet-name> RegisterController </servlet-name>
         <url-pattern>/registered </url-pattern>
     </servlet-mapping>
+
+
 </web-app>

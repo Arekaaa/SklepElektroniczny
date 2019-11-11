@@ -10,17 +10,14 @@ import java.sql.Statement;
 public class LoginDao {
     static Connection connection = null;
     static ResultSet resultSet = null;
-
+    static Statement statement = null;
+    public static String witaj;
     public static void preparingDB(){
-        Statement statement = null;
+
         String createDB = "CREATE DATABASE IF NOT EXISTS sklep_elektroniczny";
 
-        String createTable = "CREATE TABLE IF NOT EXISTS " +
-                "uzytkownik (ID int(10) NOT NULL AUTO_INCREMENT, Imie varchar(30) NOT NULL, Nazwisko varchar(30) NOT NULL, " +
-                "Login varchar(30) NOT NULL, Haslo varchar(30) NOT NULL, Mail varchar(30) NOT NULL, Primary Key(ID))";
-
         try {
-            connection = ConnectionUser.connectionToCreateDB();
+            connection = ConnectionManager.connectionToCreateDB();
             if (connection == null) {
                 throw new RuntimeException("Brak połączenia");
             }
@@ -32,26 +29,30 @@ public class LoginDao {
             ex.printStackTrace();
         }
 
+    }
+    public static void preparingTableUsers(){
+
+        String createTableUsers = "CREATE TABLE IF NOT EXISTS " +
+                "uzytkownik (ID int(10) NOT NULL AUTO_INCREMENT, Imie varchar(30) NOT NULL, Nazwisko varchar(30) NOT NULL, " +
+                "Login varchar(30) NOT NULL, Haslo varchar(30) NOT NULL, Mail varchar(30) NOT NULL, Primary Key(ID))";
         try {
-            connection = ConnectionUser.connectionOthers();
+            connection = ConnectionManager.connectionOthers();
             if (connection == null) {
                 throw new RuntimeException("Brak połączenia");
             }
             statement = connection.createStatement();
-            statement.executeUpdate(createTable);
+            statement.executeUpdate(createTableUsers);
             statement.close();
             connection.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
 
-    public static void login(UserBean bean) { //Tworzymy statyczną metodę o nazwie login która przyjmuję jako argument obiekt bean klasy UserBean
-        Statement statement = null;
-        String login = bean.getLogin();
-        String haslo = bean.getHaslo();
-        boolean polaWypelnione;
+    public static void login(UserBean user) { //Tworzymy statyczną metodę o nazwie login która przyjmuję jako argument obiekt bean klasy UserBean
+
+        String login = user.getLogin();
+        String haslo = user.getHaslo();
         String searchQuery =
                 "SELECT * FROM uzytkownik WHERE Login='"
                         + login
@@ -59,18 +60,11 @@ public class LoginDao {
                         + haslo
                         + "'";
 
-        if (bean.getLogin().equals("") || bean.getHaslo().equals("")){
-            polaWypelnione=false;
-        }
-        else{
-            polaWypelnione=true;
-        }
-
-        if(polaWypelnione) {
             preparingDB();
+            preparingTableUsers();
             try {
                 //LOGOWANIE
-                connection = ConnectionUser.connectionOthers();
+                connection = ConnectionManager.connectionOthers();
                 if (connection == null) {
                     throw new RuntimeException("Brak połączenia");
                 }
@@ -78,13 +72,13 @@ public class LoginDao {
                 resultSet = statement.executeQuery(searchQuery);
                 if (resultSet.next()) {
                     //Jeśli użytkownik istnieje ustawia zmienną zalogowany na true
-                    if (resultSet.getString("Login").compareTo(bean.getLogin()) == 0 && resultSet.getString("Haslo").compareTo(bean.getHaslo()) == 0) {
-                        //System.out.println("CONSOLE: Witaj " + login);
-                        bean.setZalogowany(true);
+                    if (resultSet.getString("Login").compareTo(user.getLogin()) == 0 && resultSet.getString("Haslo").compareTo(user.getHaslo()) == 0) {
+                        witaj=user.getLogin();
+                        user.setZalogowany(true);
                     }
                     // Jeśli użytkownik nie istnieje ustawia zmienną zalogowany na false
                     else {
-                        bean.setZalogowany(false);
+                        user.setZalogowany(false);
                     }
                 }
                 resultSet.close();
@@ -95,4 +89,3 @@ public class LoginDao {
             }
         }
     }
-}

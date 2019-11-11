@@ -25,9 +25,9 @@
     <form action="${pageContext.request.contextPath}/login" method="get">
         <div id="labele">
             <label for="login">Podaj swój login:</label>
-            <input type="text" name="login" id="login"/><br><br/>
+            <input type="text" name="login" id="login" required/><br><br/>
          <label for="haslo">Podaj swoje hasło:</label>
-            <input type="password" name="haslo" id="haslo"/></div><br/>
+            <input type="password" name="haslo" id="haslo" required/></div><br/>
 
         <input type="submit" value="Zaloguj" id="zalogujButton"><br/>
         <h2>${alert} </h2>

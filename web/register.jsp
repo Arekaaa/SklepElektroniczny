@@ -23,17 +23,17 @@
     <form action="${pageContext.request.contextPath}/register" method="get">
         <div id="labele">
             <label for="loginR">Login:</label>
-            <input type="text" name="rLogin" id="loginR"/><br><br/>
+            <input type="text" name="rLogin" id="loginR"required/><br><br/>
             <label for="hasloR">Hasło:</label>
-            <input type="password" name="rHaslo" id="hasloR"/><br><br/>
+            <input type="password" name="rHaslo" id="hasloR"required/><br><br/>
             <label for="hasloRepeat">Powtórz hasło:</label>
-            <input type="password" name="rHasloRepeat" id="hasloRepeat"/><br><br/>
+            <input type="password" name="rHasloRepeat" id="hasloRepeat"required/><br><br/>
             <label for="imie">Imię:</label>
-            <input type="text" name="rImie" id="imie"/><br><br/>
+            <input type="text" name="rImie" id="imie"required/><br><br/>
             <label for="nazwisko">Nazwisko:</label>
-            <input type="text" name="rNazwisko" id="nazwisko"/><br><br/>
+            <input type="text" name="rNazwisko" id="nazwisko"required/><br><br/>
             <label for="mail">Adres e-mail:</label>
-            <input type="email" name="rMail" id="mail"/></div><br/>
+            <input type="email" name="rMail" id="mail"required/></div><br/>
             <style type="text/css">
             #loginR, #hasloR,#hasloRepeat,#imie,#nazwisko,#mail {
                 outline: <%= request.getAttribute("fieldAlert") %>; <%--//pola nie moga byc puste--%>
@@ -64,4 +64,18 @@
     <a href=index.jsp id="homeButton"> <img src="Images/home.png" alt="Przenosi na stronę główną" width="60" height="60" id="przyciskHome"></a></div>
 <br/>
 </body>
+<script>
+    var password = document.getElementById("hasloR"), confirm_password = document.getElementById("hasloRepeat");
+
+    function validatePassword(){
+        if(password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Wpisane hasło rózni się!");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>
 </html>

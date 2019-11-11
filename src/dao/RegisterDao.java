@@ -10,18 +10,15 @@ import java.sql.Statement;
 public class RegisterDao {
     static Connection connection = null;
     static ResultSet resultSet = null;
+    static Statement statement = null;
+    public static void register(UserBean user) { //Tworzymy statyczną metodę o nazwie register która przyjmuję jako argument obiekt bean klasy UserBean
 
-    public static void register(UserBean bean) { //Tworzymy statyczną metodę o nazwie register która przyjmuję jako argument obiekt bean klasy UserBean
-        Statement statement = null;
+        String login = user.getLogin();
+        String haslo = user.getHaslo();
+        String imie = user.getImie();
+        String nazwisko = user.getNazwisko();
+        String mail = user.getMail();
 
-        String login = bean.getLogin();
-        String haslo = bean.getHaslo();
-        String imie = bean.getImie();
-        String nazwisko = bean.getNazwisko();
-        String mail = bean.getMail();
-        String repeatHaslo = bean.getHasloRepeat();
-        boolean polaWypelnione;
-        boolean haslaNieRozne;
         boolean nieIstnieje=true;
 
         String insertUser =
@@ -34,25 +31,15 @@ public class RegisterDao {
                         + mail
                         + "'";
 
-        if (login.equals("") || haslo.equals("") || repeatHaslo.equals("") || imie.equals("") || nazwisko.equals("") || mail.equals("")) {
-            polaWypelnione = false;
-        } else {
-            polaWypelnione = true;
-        }
 
-        if(haslo.compareTo(repeatHaslo)==0){
-            haslaNieRozne=true;
-        }
-        else{
-            haslaNieRozne=false;
-        }
+
 
         //Sprawdz czy istnieje juz taki uzytkownik
-       if (polaWypelnione && haslaNieRozne) {
            LoginDao.preparingDB();
+           LoginDao.preparingTableUsers();
 
            try {
-               connection = ConnectionUser.connectionOthers();
+               connection = ConnectionManager.connectionOthers();
                if (connection == null) {
                    throw new RuntimeException("Brak połączenia");
                }
@@ -74,13 +61,13 @@ public class RegisterDao {
            //REJESTRACJA NOWEGO USERA
            if (nieIstnieje) {
                try {
-                   connection = ConnectionUser.connectionOthers();
+                   connection = ConnectionManager.connectionOthers();
                    if (connection == null) {
                        throw new RuntimeException("Brak połączenia");
                    }
                    statement = connection.createStatement();
                    statement.executeUpdate(insertUser);
-                   bean.setZarejestrowany(true);
+                   user.setZarejestrowany(true);
                    statement.close();
                    connection.close();
 
@@ -90,5 +77,4 @@ public class RegisterDao {
                }
            }
        }
-    }
 }

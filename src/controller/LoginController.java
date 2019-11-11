@@ -22,19 +22,9 @@ public class LoginController extends HttpServlet {
 
             LoginDao.login(user);
 
-            if (user.getLogin().equals("") || user.getHaslo().equals("")){
-                request.setAttribute("fieldAlert", "2px solid red");
-                request.setAttribute("alert", "Pola nie mogą być puste!");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-                return; // w celu usunięcia wyjątków
-            }
-            if(user.isZalogowany()) { //Wyświetlanie informacji Witaj: login
-                request.setAttribute("powitanie", user.getLogin());
-                request.getRequestDispatcher("userLogged.jsp").forward(request, response);
-                return;
-            }
             if (user.isZalogowany()) {
-                response.sendRedirect("userLogged.jsp"); //Przejście na stronę zalogowania
+                request.getRequestDispatcher("/showProduct").forward(request, response);
+
             } else {
                 request.setAttribute("alert", "Nie znaleziono użytkownika w bazie!");
                 request.getRequestDispatcher("login.jsp").forward(request, response);

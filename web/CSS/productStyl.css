@@ -1,0 +1,76 @@
+#spisForm{
+    font-family:Cambria;
+    font-size:20pt;
+    color:#4299f0;
+    text-shadow:0 0 1px blue;
+}
+
+#addProductButton{
+    margin:auto;
+    display:block;
+}
+#goBack{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:60px;
+    height: 60px;
+    max-width: 100%;
+}
+#addForm{
+height:650px;
+width:600px;
+background-color:silver;
+display:block;
+margin:auto;
+border-radius: 15px;
+font-family:Cambria;
+font-size:24pt;
+color:#4299f0;
+text-shadow:0 0 1px blue;
+box-shadow: 0 0 15px blue;
+}
+
+#nazwa{
+    margin-left:165px;
+    width:200px;
+    height:25px;
+    text-align:center;
+}
+#producent{
+    margin-left:115px;
+    width:200px;
+    height:25px;
+    text-align:center;
+}
+#cena{
+    margin-left:145px;
+    width:200px;
+    height:25px;
+    text-align:center;
+}
+#ilosc{
+    margin-left:20px;
+    width:200px;
+    height:25px;
+    text-align:center;
+}
+#nazwa:focus,#producent:focus,#cena:focus,#ilosc:focus{
+    outline: 4px solid #4299f0;
+}
+#nazwa:hover,#hproducent:hover,#cena:hover,#ilosc:hover{
+    background-color:#cce6ff;
+}
+#dodajButton,#addProductButton{
+    display: block;
+    height:50px;
+    width:150px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:30px;
+    font-family: Cambria;
+    font-size: 20px;
+}
+#rejestrujButton:hover,#dodajButton:hover{
+    outline: 5px solid #80bfff;
+}

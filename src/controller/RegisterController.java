@@ -22,33 +22,8 @@ public class RegisterController extends HttpServlet {
             user.setHasloRepeat(request.getParameter("rHasloRepeat"));
             user.setMail(request.getParameter("rMail"));
 
-            String odczytLogin = request.getParameter("rLogin");
-            String odczytHaslo = request.getParameter("rHaslo");
-            String odczytImie = request.getParameter("rImie");
-            String odczytNazwisko = request.getParameter("rNazwisko");
-            String odczytHasloRepeat = request.getParameter("rHasloRepeat");
-            String odczytMail = request.getParameter("rMail");
 
             RegisterDao.register(user); //Przesyłamy Dane odczytane z fieldów do klasy RegisterDao która potem je pobiera
-
-        try{
-            if (odczytLogin.equals("") || odczytHaslo.equals("") || odczytImie.equals("") || odczytNazwisko.equals("") ||
-                    odczytHasloRepeat.equals("") || odczytMail.equals("")) {
-                request.setAttribute("fieldAlert", "2px solid red");
-                request.setAttribute("alert", "Pola nie mogą być puste!");
-                request.getRequestDispatcher("register.jsp").forward(request, response);
-                return; // Jeśli w servlecie występują funkcje "forward, sendRedirect" itp i jesteśmy w bloku if lub try/catch to aby kompilator mógł przeczytać następne bloki np, try/catch
-                        // to musimy użyć "return"
-            }
-            else if (user.getHaslo().compareTo(user.getHasloRepeat()) != 0) {
-                request.setAttribute("passwordAlertField", "2px solid red");
-                request.setAttribute("alert", "Wpisane hasła muszą być identyczne!");
-                request.getRequestDispatcher("register.jsp").forward(request, response);
-                return;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
             try{
                 if (user.isZarejestrowany()) {
