@@ -22,18 +22,18 @@
 <div id="registerForm">
     <form action="${pageContext.request.contextPath}/register" method="get">
         <div id="labele">
-            Login:
+            <label for="loginR">Login:</label>
             <input type="text" name="rLogin" id="loginR"/><br><br/>
-            Hasło:
+            <label for="hasloR">Hasło:</label>
             <input type="password" name="rHaslo" id="hasloR"/><br><br/>
-            Powtórz hasło:
+            <label for="hasloRepeat">Powtórz hasło:</label>
             <input type="password" name="rHasloRepeat" id="hasloRepeat"/><br><br/>
-            Imię:
+            <label for="imie">Imię:</label>
             <input type="text" name="rImie" id="imie"/><br><br/>
-            Nazwisko:
+            <label for="nazwisko">Nazwisko:</label>
             <input type="text" name="rNazwisko" id="nazwisko"/><br><br/>
-            Adres E-mail:
-            <input type="text" name="rMail" id="mail"/></div><br/>
+            <label for="mail">Adres e-mail:</label>
+            <input type="email" name="rMail" id="mail"/></div><br/>
             <style type="text/css">
             #loginR, #hasloR,#hasloRepeat,#imie,#nazwisko,#mail {
                 outline: <%= request.getAttribute("fieldAlert") %>; <%--//pola nie moga byc puste--%>

@@ -5,6 +5,7 @@
   Time: 15:40
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -23,20 +24,19 @@
 <div id="loginForm">
     <form action="${pageContext.request.contextPath}/login" method="get">
         <div id="labele">
-         Podaj swój login:
+            <label for="login">Podaj swój login:</label>
             <input type="text" name="login" id="login"/><br><br/>
-         Podaj swoje hasło:
+         <label for="haslo">Podaj swoje hasło:</label>
             <input type="password" name="haslo" id="haslo"/></div><br/>
+
+        <input type="submit" value="Zaloguj" id="zalogujButton"><br/>
+        <h2>${alert} </h2>
 
         <style type="text/css">
             #login, #haslo {
                 outline: <%= request.getAttribute("fieldAlert") %>;
             }
         </style>
-
-        <input type="submit" value="Zaloguj" id="zalogujButton"><br/>
-        <h2>${alert} </h2> <h3>${registerAlert}</h3>
-
     </form>
     <form action="register.jsp" method="get">
         <p>Nie posiadasz konta ?</p>

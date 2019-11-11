@@ -7,10 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
-    //pamietaj o zabezpieczeniu ze hasla musza byc takie same i o sprawdzeniu czy taki uzytkownik juz istnieje
-
-
 public class RegisterDao {
     static Connection connection = null;
     static ResultSet resultSet = null;
@@ -26,7 +22,6 @@ public class RegisterDao {
         String repeatHaslo = bean.getHasloRepeat();
         boolean polaWypelnione;
         boolean haslaNieRozne;
-        boolean mailPoprawny;
         boolean nieIstnieje=true;
 
         String insertUser =
@@ -35,6 +30,8 @@ public class RegisterDao {
         String searchQuery =
                 "SELECT * FROM uzytkownik WHERE Login='"
                         + login
+                        + "' OR Mail='"
+                        + mail
                         + "'";
 
         if (login.equals("") || haslo.equals("") || repeatHaslo.equals("") || imie.equals("") || nazwisko.equals("") || mail.equals("")) {
@@ -50,15 +47,8 @@ public class RegisterDao {
             haslaNieRozne=false;
         }
 
-        if(mail.contains("@")){
-            mailPoprawny=true;
-        }
-        else{
-            mailPoprawny=false;
-        }
-
         //Sprawdz czy istnieje juz taki uzytkownik
-       if (polaWypelnione && haslaNieRozne && mailPoprawny) {
+       if (polaWypelnione && haslaNieRozne) {
            LoginDao.preparingDB();
 
            try {
@@ -70,7 +60,7 @@ public class RegisterDao {
                statement.executeQuery(searchQuery);
                resultSet = statement.executeQuery(searchQuery);
                if (resultSet.next()) {
-                   if (resultSet.getString("Login").compareTo(login) == 0) {
+                   if (resultSet.getString("Login").compareTo(login) == 0 || resultSet.getString("Mail").compareTo(mail) == 0) {
                        nieIstnieje = false;
                    }
                }

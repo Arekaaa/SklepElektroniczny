@@ -14,7 +14,6 @@ import java.io.IOException;
 public class RegisterController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { // doGet przekazuje parametry w adresie URL od użytkownika do servletu
-
             UserBean user = new UserBean();
             user.setLogin(request.getParameter("rLogin"));
             user.setHaslo(request.getParameter("rHaslo"));
@@ -47,12 +46,6 @@ public class RegisterController extends HttpServlet {
                 request.getRequestDispatcher("register.jsp").forward(request, response);
                 return;
             }
-            else if(!odczytMail.contains("@")) {
-                request.setAttribute("mailAlertField", "2px solid red");
-                request.setAttribute("alertMail", "Twój mail jest niepoprawny!");
-                request.getRequestDispatcher("register.jsp").forward(request, response);
-                return;
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -65,10 +58,10 @@ public class RegisterController extends HttpServlet {
                     request.setAttribute("daneLogowania", "Login: " + user.getLogin());
                     request.setAttribute("daneLogowania1", "Hasło: " + user.getHaslo());
                     request.getRequestDispatcher("register.jsp").forward(request, response);
-                    //return; //tu nie trzeba return poniewaz nie ma juz w kodzie nastepnego bloku try/catch wiec nie trzeba sprawdzac nastepnych blokow
+                    //return --> tu nie trzeba return poniewaz nie ma juz w kodzie nastepnego bloku try/catch wiec nie trzeba sprawdzac nastepnych blokow
                 } else {
                     request.setAttribute("alert", "red");
-                    request.setAttribute("alert", "Już istnieje użytkownik o takim loginie!");
+                    request.setAttribute("alert", "Taki login lub adres e-mail jest już zajęty! Spróbuj ponownie.");
                     request.getRequestDispatcher("register.jsp").forward(request, response);
 
                 }
