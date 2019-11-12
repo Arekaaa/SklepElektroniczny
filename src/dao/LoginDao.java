@@ -8,11 +8,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class LoginDao {
-    static Connection connection = null;
-    static ResultSet resultSet = null;
-    static Statement statement = null;
-    public static String witaj;
-    public static void preparingDB(){
+    private static Connection connection = null;
+    private static ResultSet resultSet = null;
+    private static Statement statement = null;
+    private static String witaj;
+
+
+    static void preparingDB(){
 
         String createDB = "CREATE DATABASE IF NOT EXISTS sklep_elektroniczny";
 
@@ -30,7 +32,7 @@ public class LoginDao {
         }
 
     }
-    public static void preparingTableUsers(){
+    static void preparingTableUsers(){
 
         String createTableUsers = "CREATE TABLE IF NOT EXISTS " +
                 "uzytkownik (ID int(10) NOT NULL AUTO_INCREMENT, Imie varchar(30) NOT NULL, Nazwisko varchar(30) NOT NULL, " +
@@ -88,4 +90,8 @@ public class LoginDao {
                 System.out.println("Błąd przy logowaniu ! " + ex);
             }
         }
+
+    public static String getWitaj() {
+        return witaj;
+    }
     }

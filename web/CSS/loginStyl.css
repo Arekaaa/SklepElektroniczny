@@ -78,6 +78,7 @@ p {
     margin-top:30px;
     font-family: Cambria;
     font-size: 30px;
+    transition-duration: 0.4s;
 }
 #zalogujButton:hover{
     outline: 5px solid #80bfff;
@@ -91,6 +92,7 @@ p {
     margin-top:30px;
     font-family: Cambria;
     font-size: 20px;
+    transition-duration: 0.4s;
 }
 #rejestrujButton:hover{
     outline: 5px solid #80bfff;

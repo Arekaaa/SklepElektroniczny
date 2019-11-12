@@ -20,7 +20,7 @@ public class LoginController extends HttpServlet {
             user.setLogin(request.getParameter("login"));
             user.setHaslo(request.getParameter("haslo"));
 
-            LoginDao.login(user);
+            LoginDao.login(user); //Inicjalizujemy dane odczytane z fieldów JSP aby metoda login w klasie LoginDao miała do nich dostęp
 
             if (user.isZalogowany()) {
                 request.getRequestDispatcher("/showProduct").forward(request, response);
@@ -30,7 +30,7 @@ public class LoginController extends HttpServlet {
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
 
-        } catch (Exception e) {
+        } catch (ServletException e) {
             e.printStackTrace();
         }
 

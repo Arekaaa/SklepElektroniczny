@@ -23,7 +23,7 @@ public class RegisterController extends HttpServlet {
             user.setMail(request.getParameter("rMail"));
 
 
-            RegisterDao.register(user); //Przesyłamy Dane odczytane z fieldów do klasy RegisterDao która potem je pobiera
+            RegisterDao.register(user); //Inicjalizujemy dane odczytane z fieldów JSP aby metoda register w klasie RegisterDao miała do nich dostęp
 
             try{
                 if (user.isZarejestrowany()) {
@@ -40,7 +40,7 @@ public class RegisterController extends HttpServlet {
                     request.getRequestDispatcher("register.jsp").forward(request, response);
 
                 }
-        } catch (Exception e) {
+        } catch (ServletException e) {
             e.printStackTrace();
         }
     }

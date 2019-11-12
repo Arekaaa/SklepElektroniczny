@@ -1,13 +1,51 @@
 #spisForm{
-    font-family:Cambria;
+    font-family: Cambria, serif;
     font-size:20pt;
-    color:#4299f0;
+    color:#062647;
     text-shadow:0 0 1px blue;
 }
 
 #addProductButton{
     margin:auto;
     display:block;
+}
+#szukajButton{
+    display:inline-block;
+    margin-left:50px;
+    height: 40px;
+    width: 100px;
+}
+#refreshButton{
+    height: 40px;
+}
+#refreshForm{
+    margin-top: 20px;
+    margin-left:1360px
+}
+#labelTypWyszukiwania{
+    margin-left:365px;
+    color: #294680;
+    font-family: Cambria, serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+#labelSzukaj {
+    margin-left: 50px;
+    color: #294680;
+    font-family: Cambria, serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+#szukaj{
+    margin-left:20px;
+    text-align: center;
+    width:200px;
+    height:25px;
+}
+#typWyszukiwania{
+    margin-left:20px;
+    width:200px;
+    height:35px;
 }
 #goBack{
     display: block;
@@ -18,17 +56,17 @@
     max-width: 100%;
 }
 #addForm{
-height:650px;
-width:600px;
-background-color:silver;
-display:block;
-margin:auto;
-border-radius: 15px;
-font-family:Cambria;
-font-size:24pt;
-color:#4299f0;
-text-shadow:0 0 1px blue;
-box-shadow: 0 0 15px blue;
+    height:650px;
+    width:600px;
+    background-color:silver;
+    display:block;
+    margin:auto;
+    border-radius: 15px;
+    font-family: Cambria, serif;
+    font-size:24pt;
+    color:#4299f0;
+    text-shadow:0 0 1px blue;
+    box-shadow: 0 0 15px blue;
 }
 
 #nazwa{
@@ -68,9 +106,26 @@ box-shadow: 0 0 15px blue;
     margin-left: auto;
     margin-right: auto;
     margin-top:30px;
-    font-family: Cambria;
+    font-family: Cambria, serif;
     font-size: 20px;
 }
 #rejestrujButton:hover,#dodajButton:hover{
     outline: 5px solid #80bfff;
+}
+
+#usun:link,#edytuj:link,#edytuj:visited, #usun:visited {
+    background-color: #294680;
+    border: none;
+    color: #FFFFFF;
+    padding: 10px 16px;
+    text-align: center;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+#usun:hover,#edytuj:hover,#edytuj:active, #usun:active {
+    background-color: #153f93;
 }

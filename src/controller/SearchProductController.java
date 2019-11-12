@@ -13,15 +13,19 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/showProduct")
-public class ShowProductController extends HttpServlet {
+@WebServlet("/searchProduct")
+public class SearchProductController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ProductBean product = new ProductBean();
         ProductDao productDao = new ProductDao();
-            try {
-                List<ProductBean> listaProduktow = productDao.showProducts();
+        product.setTypWyszukiwania(request.getParameter("typWyszukiwania"));
+        product.setWprowadzonaWartosc(request.getParameter("szukaj"));
+        try {
+                List<ProductBean> listaProduktowWyszukana = productDao.searchProduct(product); //Do naszej listy produktów inicjalizujemy dane odczytane z fieldów JSP
+                                                                                                // aby metoda searchProduct w klasie ProductDao miała do nich dostęp
                 request.setAttribute("powitanie", LoginDao.getWitaj());
                 request.setAttribute("iloscProduktow",productDao.getIlosc());
-                request.setAttribute("listaProduktow", listaProduktow);
+                request.setAttribute("listaProduktow", listaProduktowWyszukana);
                 request.getRequestDispatcher("userLogged.jsp").forward(request, response);
 
             } catch (ServletException | SQLException ex) {

@@ -1,9 +1,8 @@
 package controller;
 
 import beans.ProductBean;
-import beans.UserBean;
 import dao.ProductDao;
-import dao.RegisterDao;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +22,7 @@ public class AddProductController extends HttpServlet {
         produkt.setCena(Float.parseFloat((request.getParameter("cena"))));
         produkt.setIlosc(Integer.parseInt(request.getParameter("ilosc")));
 
-       productDao.addProduct(produkt); //Inicjalizujemy dodawanie. Przesył danych z fieldów do klasy producDao
+       productDao.addProduct(produkt); //Inicjalizujemy dane odczytane z fieldów JSP aby metoda addProduct w klasie ProductDao miała do nich dostęp
 
         try{
             if (produkt.isDodany()) {
@@ -36,7 +35,7 @@ public class AddProductController extends HttpServlet {
                 request.getRequestDispatcher("addProduct.jsp").forward(request, response);
 
             }
-        } catch (Exception e) {
+        } catch (ServletException e) {
             e.printStackTrace();
         }
     }

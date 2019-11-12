@@ -9,6 +9,8 @@ public class ProductBean {
     private float cena;
     private int ilosc;
     private boolean dodany;
+    private String typWyszukiwania;
+    private String wprowadzonaWartosc;
 
     public int getId() {
         return id;
@@ -56,5 +58,22 @@ public class ProductBean {
 
     public void setDodany(boolean dodany) {
         this.dodany = dodany;
+    }
+
+    public String getTypWyszukiwania() {
+        return typWyszukiwania;
+    }
+
+    public void setTypWyszukiwania(String typWyszukiwaniaNazwa) {
+        this.typWyszukiwania = typWyszukiwaniaNazwa;
+    }
+
+
+    public String getWprowadzonaWartosc() {
+        return wprowadzonaWartosc;
+    }
+
+    public void setWprowadzonaWartosc(String wprowadzonaWartosc) {
+        this.wprowadzonaWartosc = wprowadzonaWartosc;
     }
 }

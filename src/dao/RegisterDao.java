@@ -8,9 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class RegisterDao {
-    static Connection connection = null;
-    static ResultSet resultSet = null;
-    static Statement statement = null;
+    private static Connection connection = null;
+    private static ResultSet resultSet = null;
+    private static Statement statement = null;
     public static void register(UserBean user) { //Tworzymy statyczną metodę o nazwie register która przyjmuję jako argument obiekt bean klasy UserBean
 
         String login = user.getLogin();
@@ -18,7 +18,6 @@ public class RegisterDao {
         String imie = user.getImie();
         String nazwisko = user.getNazwisko();
         String mail = user.getMail();
-
         boolean nieIstnieje=true;
 
         String insertUser =
@@ -30,9 +29,6 @@ public class RegisterDao {
                         + "' OR Mail='"
                         + mail
                         + "'";
-
-
-
 
         //Sprawdz czy istnieje juz taki uzytkownik
            LoginDao.preparingDB();
@@ -57,7 +53,6 @@ public class RegisterDao {
            } catch (SQLException ex) {
                ex.printStackTrace();
            }
-
            //REJESTRACJA NOWEGO USERA
            if (nieIstnieje) {
                try {
@@ -70,8 +65,6 @@ public class RegisterDao {
                    user.setZarejestrowany(true);
                    statement.close();
                    connection.close();
-
-
                } catch (SQLException ex) {
                    System.out.println("Błąd przy rejestracji ! " + ex);
                }

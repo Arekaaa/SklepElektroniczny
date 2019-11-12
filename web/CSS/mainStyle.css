@@ -29,6 +29,7 @@ p {
     position:fixed;
     right:50px;
     top:20px;
+    transition-duration: 0.4s;
 }
 #loginButton:link, #loginButton:visited {
     background-color:#6699cc; /* kolor wypełnienia*/
