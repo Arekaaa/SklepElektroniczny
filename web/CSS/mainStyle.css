@@ -9,12 +9,12 @@ body{
 h1{
     text-align: center;
     color:#294680;
-    font-family: Cambria;
+    font-family: Cambria, serif;
 }
 p {
     text-align: center;
     color: #294680;
-    font-family: Cambria;
+    font-family: Cambria, serif;
     font-size: 20px;
     font-weight: bold;
 }
@@ -36,7 +36,7 @@ p {
     color:#294680; /* kolor napisu wewnątrz*/
     text-align:center;
     text-decoration:none;
-    font-family: Cambria;
+    font-family: Cambria, serif;
     font-size: 20px;
     font-weight: bold;
     box-shadow: 0 0 8px #294680;
@@ -54,7 +54,7 @@ p {
     position: fixed;
     font-size:20px;
     font-weight: bold;
-    font-family: Cambria;
+    font-family: Cambria, serif;
     left: 0;
     bottom: 4cm;
     width: 100%;
@@ -66,7 +66,7 @@ p {
 #textHome{
     text-align: center;
     color:#294680;
-    font-family: Cambria;
+    font-family: Cambria, serif;
     font-size:20px;
     font-weight: bold;
 }

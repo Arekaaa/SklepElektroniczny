@@ -73,10 +73,9 @@ public class LoginDao {
                 statement = connection.createStatement();
                 resultSet = statement.executeQuery(searchQuery);
                 if (resultSet.next()) {
-                    //Jeśli użytkownik istnieje ustawia zmienną zalogowany na true
                     if (resultSet.getString("Login").compareTo(user.getLogin()) == 0 && resultSet.getString("Haslo").compareTo(user.getHaslo()) == 0) {
                         witaj=user.getLogin();
-                        user.setZalogowany(true);
+                        user.setZalogowany(true);//Jeśli użytkownik istnieje ustawia zmienną zalogowany na true
                     }
                     // Jeśli użytkownik nie istnieje ustawia zmienną zalogowany na false
                     else {

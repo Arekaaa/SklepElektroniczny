@@ -25,6 +25,7 @@ public class RemoveProductController extends HttpServlet {
             List<ProductBean> listaProduktow = productDao.showProducts();
             request.setAttribute("powitanie", LoginDao.getWitaj());
             request.setAttribute("iloscProduktow",productDao.getIlosc());
+            request.setAttribute("kwotaProduktow",productDao.getKwota());
             request.setAttribute("listaProduktow", listaProduktow);
             request.getRequestDispatcher("userLogged.jsp").forward(request, response);
 

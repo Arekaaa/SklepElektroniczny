@@ -33,7 +33,6 @@ public class RegisterDao {
         //Sprawdz czy istnieje juz taki uzytkownik
            LoginDao.preparingDB();
            LoginDao.preparingTableUsers();
-
            try {
                connection = ConnectionManager.connectionOthers();
                if (connection == null) {

@@ -19,11 +19,21 @@ public class ShowProductController extends HttpServlet {
         ProductDao productDao = new ProductDao();
             try {
                 List<ProductBean> listaProduktow = productDao.showProducts();
-                request.setAttribute("powitanie", LoginDao.getWitaj());
-                request.setAttribute("iloscProduktow",productDao.getIlosc());
-                request.setAttribute("listaProduktow", listaProduktow);
-                request.getRequestDispatcher("userLogged.jsp").forward(request, response);
 
+                if(productDao.isNieZnaleziono()){
+                    request.setAttribute("powitanie", LoginDao.getWitaj());
+                    request.setAttribute("iloscProduktow", productDao.getIlosc());
+                    request.setAttribute("kwotaProduktow",productDao.getKwota());
+                    request.setAttribute("pustyWynik", "Nie znaleziono produktów");
+                    request.getRequestDispatcher("userLogged.jsp").forward(request, response);
+                }
+                else {
+                    request.setAttribute("powitanie", LoginDao.getWitaj());
+                    request.setAttribute("iloscProduktow", productDao.getIlosc());
+                    request.setAttribute("kwotaProduktow",productDao.getKwota());
+                    request.setAttribute("listaProduktow", listaProduktow);
+                    request.getRequestDispatcher("userLogged.jsp").forward(request, response);
+                }
             } catch (ServletException | SQLException ex) {
                 throw new ServletException("Nie można pobrać produktów z bazy danych", ex);
             }

@@ -34,17 +34,6 @@
             <input type="text" name="rNazwisko" id="nazwisko" required/><br><br/>
             <label for="mail">Adres e-mail:</label>
             <input type="email" name="rMail" id="mail" required/></div><br/>
-            <style type="text/css">
-            #loginR, #hasloR,#hasloRepeat,#imie,#nazwisko,#mail {
-                outline: <%= request.getAttribute("fieldAlert") %>; <%--//pola nie moga byc puste--%>
-            }
-            #hasloR,#hasloRepeat{
-                outline: <%= request.getAttribute("passwordAlertField") %>; <%-- hasla musza byc takie same--%>
-            }
-            #mail{
-                outline: <%= request.getAttribute("mailAlertField") %>; <%-- mail nie poprawny--%>
-            }
-            </style>
 
             <input type="submit" value="Zarejestruj" id="rejestrujButton"><br/>
         <style type="text/css">

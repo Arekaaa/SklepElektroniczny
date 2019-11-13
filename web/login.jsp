@@ -32,11 +32,7 @@
         <input type="submit" value="Zaloguj" id="zalogujButton"><br/>
         <h2>${alert} </h2>
 
-        <style type="text/css">
-            #login, #haslo {
-                outline: <%= request.getAttribute("fieldAlert") %>;
-            }
-        </style>
+
     </form>
     <form action="register.jsp" method="get">
         <p>Nie posiadasz konta ?</p>

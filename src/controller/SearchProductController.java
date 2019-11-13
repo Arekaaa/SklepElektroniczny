@@ -23,11 +23,20 @@ public class SearchProductController extends HttpServlet {
         try {
                 List<ProductBean> listaProduktowWyszukana = productDao.searchProduct(product); //Do naszej listy produktów inicjalizujemy dane odczytane z fieldów JSP
                                                                                                 // aby metoda searchProduct w klasie ProductDao miała do nich dostęp
-                request.setAttribute("powitanie", LoginDao.getWitaj());
-                request.setAttribute("iloscProduktow",productDao.getIlosc());
-                request.setAttribute("listaProduktow", listaProduktowWyszukana);
-                request.getRequestDispatcher("userLogged.jsp").forward(request, response);
-
+                if(productDao.isNieZnaleziono()){
+                    request.setAttribute("powitanie", LoginDao.getWitaj());
+                    request.setAttribute("iloscProduktow", productDao.getIlosc());
+                    request.setAttribute("kwotaProduktow",productDao.getKwota());
+                    request.setAttribute("pustyWynik", "Nie znaleziono produktów");
+                    request.getRequestDispatcher("userLogged.jsp").forward(request, response);
+                }
+                else {
+                    request.setAttribute("powitanie", LoginDao.getWitaj());
+                    request.setAttribute("iloscProduktow", productDao.getIlosc());
+                    request.setAttribute("kwotaProduktow", productDao.getKwota());
+                    request.setAttribute("listaProduktow", listaProduktowWyszukana);
+                    request.getRequestDispatcher("userLogged.jsp").forward(request, response);
+                }
             } catch (ServletException | SQLException ex) {
                 throw new ServletException("Nie można pobrać produktów z bazy danych", ex);
             }
