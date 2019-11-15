@@ -12,8 +12,14 @@ public class ProductDao {
     private static ResultSet resultSet = null;
     private static Statement statement = null;
     private int ilosc=0;
+    private String typSortowania=null;
+    private int metodaSortowania=0;
     private float kwota=0;
     private boolean nieZnaleziono=false;
+    //private String searchSortQuery=null;
+    private String typWyszukiwania=null;
+    private String wprowadzonaWartosc=null;
+    private String descOrAsc=null;
 
     private static void preparingTableProducts() {
 
@@ -83,14 +89,14 @@ public class ProductDao {
         sumujWartosc();
         sprawdzIlosc();
 
-        String searchProductQuery = "SELECT * FROM produkty";
+        String showDefaultProducts = "SELECT * FROM produkty";
         try {
             connection = ConnectionManager.connectionOthers();
             if (connection == null) {
                 throw new RuntimeException("Brak połączenia");
             }
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(searchProductQuery);
+            resultSet = statement.executeQuery(showDefaultProducts);
             if(!resultSet.next()){
                 nieZnaleziono=true;
             }
@@ -242,17 +248,13 @@ public class ProductDao {
             System.out.println("Błąd bazy danych ! " + ex);
         }
     }
-        public List<ProductBean> searchProduct(ProductBean product) throws SQLException{
+        public List<ProductBean> searchProduct(ProductDao product) throws SQLException{
             List<ProductBean> listaProduktowWyszukana = new ArrayList<ProductBean>();
-
-            String typWyszukiwania = product.getTypWyszukiwania();
-            String wartosc = product.getWprowadzonaWartosc();
             LoginDao.preparingDB();
             preparingTableProducts();
             sumujWartosc();
             sprawdzIlosc();
-
-            String searchProductQuery = "SELECT * FROM produkty WHERE "+typWyszukiwania+" LIKE '"+wartosc+"%"+"' OR "+typWyszukiwania+" LIKE '"+wartosc+"%"+"'";
+            String searchProductQuery = "SELECT * FROM produkty WHERE "+typWyszukiwania+" LIKE '"+wprowadzonaWartosc+"%"+"'";
 
             try {
                 connection = ConnectionManager.connectionOthers();
@@ -284,6 +286,51 @@ public class ProductDao {
             return listaProduktowWyszukana;
         }
 
+        public List<ProductBean> sortProductMethod(ProductDao product) throws SQLException{
+        List<ProductBean> listaProduktowSortowana = new ArrayList<ProductBean>();
+        sumujWartosc();
+        sprawdzIlosc();
+            String searchSortQuery;
+            if(metodaSortowania==1){
+                searchSortQuery = "SELECT * FROM produkty WHERE " + typWyszukiwania + " LIKE '" +wprowadzonaWartosc+ "%'"+ "ORDER BY " +typSortowania +" "+descOrAsc;
+            }
+           else {
+                searchSortQuery = "SELECT * FROM produkty ORDER BY "+typSortowania +" "+descOrAsc;
+            }
+        try {
+            connection = ConnectionManager.connectionOthers();
+            if (connection == null) {
+                throw new RuntimeException("Brak połączenia");
+            }
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(searchSortQuery);
+            if(!resultSet.next()){
+                nieZnaleziono=true;
+            }
+            else {
+                do{     // pętla do while zastosowa aby pobrac wszystkie wiersze z tabeli
+                    ProductBean produkt = new ProductBean();
+                    produkt.setId(resultSet.getInt("ID"));
+                    produkt.setNazwa(resultSet.getString("Nazwa"));
+                    produkt.setProducent(resultSet.getString("Producent"));
+                    produkt.setCena(resultSet.getFloat("Cena"));
+                    produkt.setIlosc(resultSet.getInt("Ilosc"));
+                    listaProduktowSortowana.add(produkt);
+                }while (resultSet.next());
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            System.out.println("Błąd bazy danych ! " + ex);
+        }
+        return listaProduktowSortowana;
+    }
+
+
+
+
+    //Gettery/settery klasy ProductDao
     public int getIlosc() {
         return ilosc;
     }
@@ -295,6 +342,25 @@ public class ProductDao {
         return nieZnaleziono;
     }
 
+    public void setTypSortowania(String typSortowania) {
+        this.typSortowania = typSortowania;
+    }
+
+    public void setDescOrAsc(String descOrAsc) {
+        this.descOrAsc = descOrAsc;
+    }
+
+    public void setTypWyszukiwania(String typWyszukiwaniaNazwa) {
+        this.typWyszukiwania = typWyszukiwaniaNazwa;
+    }
+
+    public void setWprowadzonaWartosc(String wprowadzonaWartosc) {
+        this.wprowadzonaWartosc = wprowadzonaWartosc;
+    }
+
+    public void setMetodaSortowania(int metodaSortowania) {
+        this.metodaSortowania = metodaSortowania;
+    }
 }
 
 

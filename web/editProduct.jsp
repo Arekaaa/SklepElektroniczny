@@ -14,8 +14,8 @@
     <title>Dodaj produkt</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/loginStyl.css" type="text/css">
-    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/productStyle.css" type="text/css">
+    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/loginStyle.css" type="text/css">
+    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/productStyl.css" type="text/css">
     <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon" />
 </head>
 <body>
@@ -40,13 +40,9 @@
                 color:<%=request.getAttribute("alertColor") %>; }
         </style>
         <h2>${alert}</h2>
-
     </form>
     <p>Wróć na poprzednią stronę </p>
-    <form action="${pageContext.request.contextPath}/showProduct" method="get">
-        <input type="image"  src="Images/return.png" id="goBack" alt="Przenosi na poprzednią stronę">
-    </form>
-
+        <input type="image"  src="Images/return.png" id="goBack" onclick="history.back()" alt="Przenosi na poprzednią stronę">
 </div>
 </body>
 </html>

@@ -17,9 +17,10 @@ import java.util.List;
 public class ShowProductController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductDao productDao = new ProductDao();
+        int metoda =0;
+
             try {
                 List<ProductBean> listaProduktow = productDao.showProducts();
-
                 if(productDao.isNieZnaleziono()){
                     request.setAttribute("powitanie", LoginDao.getWitaj());
                     request.setAttribute("iloscProduktow", productDao.getIlosc());
@@ -28,6 +29,8 @@ public class ShowProductController extends HttpServlet {
                     request.getRequestDispatcher("userLogged.jsp").forward(request, response);
                 }
                 else {
+                    productDao.setMetodaSortowania(metoda);
+                    request.setAttribute("metoda",metoda);
                     request.setAttribute("powitanie", LoginDao.getWitaj());
                     request.setAttribute("iloscProduktow", productDao.getIlosc());
                     request.setAttribute("kwotaProduktow",productDao.getKwota());

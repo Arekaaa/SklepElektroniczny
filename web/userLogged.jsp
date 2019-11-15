@@ -1,4 +1,3 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: Arek
@@ -7,9 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java"
-         import="beans.UserBean"
-%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
 <html>
@@ -20,10 +17,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/mainStyle.css" type="text/css">
-    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/productStyle.css" type="text/css">
+    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/productStyl.css" type="text/css">
     <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon" />
 </head>
-
+<body>
 <br>
 <div id="loginButtonDiv">
 <p>Witaj: ${powitanie}</p>
@@ -50,40 +47,48 @@
     <input type="text" name="szukaj" id="szukaj" required>
     </form>
     <p></p>
-
-
     <div id="refreshForm">
         <form action="${pageContext.request.contextPath}/showProduct" method="get">
-            <input type="submit" value="Wczytaj bazowe produkty" id="refreshButton"></form>
+            <input type="submit" value="Wczytaj wszystkie produkty" id="refreshButton"></form>
     </div><br/>
 
     <table  align="center" border="1" style="background-color: #a6bfd9;">
         <tr>
             <th colspan="7" scope="colgroup">Tabela Produktów</th>
         </tr>
-        <tr>
-            <th>ID<br><br/>
-                <input type="image" src="Images/arrow-down.png" id="ascId" onclick=""  alt="Sortuje rosnąco ID">
-                <input type="image" src="Images/arrow-up.png" id="descId"  onclick="" alt="Sortuje malejąco ID">
-            </th>
-            <th>Nazwa<br><br/>
-                <input type="image" src="Images/arrow-down.png" id="ascNazwa" onclick="" alt="Sortuje rosnąco nazwę">
-                <input type="image" src="Images/arrow-up.png" id="descNazwa"  onclick="" alt="Sortuje malejąco nazwę">
-            </th>
-            <th>Producent<br><br/>
-                <input type="image" src="Images/arrow-down.png" id="ascProducent" onclick=""  alt="Sortuje rosnąco producenta">
-                <input type="image" src="Images/arrow-up.png" id="descProducent"  onclick="" alt="Sortuje malejąco producenta">
-            </th>
-            <th>Cena(zł)<br><br/>
-                <input type="image" src="Images/arrow-down.png" id="ascCena" onclick="" alt="Sortuje rosnąco cenę">
-                <input type="image" src="Images/arrow-up.png" id="descCena"  onclick="" alt="Sortuje malejąco cenę">
-            </th>
-            <th>Ilość<br/>(w sztukach)<br/>
-                <input type="image" src="Images/arrow-down.png" id="ascIlosc" onclick="" alt="Sortuje rosnąco ilość">
-                <input type="image" src="Images/arrow-up.png" id="descIlosc"  onclick="" alt="Sortuje malejąco ilość">
-            </th>
-            <th colspan="2"></th>
-        </tr>
+            <tr>
+                <th>ID<br><br/>
+                    <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Id&descOrAsc=ASC" >
+                    <img src="Images/arrow-up.png" id="ascId" alt="Sortuje rosnąco ID"></a>
+                    <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Id&descOrAsc=DESC" >
+                    <img src="Images/arrow-down.png" id="descId" alt="Sortuje malejąco ID"></a>
+                </th>
+                <th>Nazwa<br><br/>
+                    <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Id&descOrAsc=ASC" >
+                    <img src="Images/arrow-up.png" id="ascNazwa" alt="Sortuje rosnąco nazwę"></a>
+                    <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Nazwa&descOrAsc=DESC" >
+                    <img src="Images/arrow-down.png" id="descNazwa" alt="Sortuje malejąco nazwę"></a>
+                </th>
+                <th>Producent<br><br/>
+                    <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Id&descOrAsc=ASC" >
+                    <img src="Images/arrow-up.png" id="ascProducent" alt="Sortuje rosnąco producenta"></a>
+                    <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Producent&descOrAsc=DESC" >
+                    <img src="Images/arrow-down.png" id="descProducent" alt="Sortuje malejąco producenta"></a>
+                </th>
+                <th>Cena(zł)<br><br/>
+                    <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Id&descOrAsc=ASC" >
+                    <img src="Images/arrow-up.png" id="ascCena" alt="Sortuje rosnąco cenę"></a>
+                    <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Cena&descOrAsc=DESC" >
+                    <img src="Images/arrow-down.png" id="descCena" alt="Sortuje malejąco cenę"></a>
+                </th>
+                <th>Ilość<br/>(w sztukach)<br/>
+                    <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Id&descOrAsc=ASC" >
+                    <img src="Images/arrow-up.png" id="ascIlosc" alt="Sortuje rosnąco ilością"></a>
+                    <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Ilosc&descOrAsc=DESC" >
+                    <img src="Images/arrow-down.png" id="descIlosc" alt="Sortuje malejąco ilością"></a>
+                </th>
+                <th colspan="2"></th>
+            </tr>
         <c:forEach items="${listaProduktow}" var="produkt">
             <tr>
             <td align="center">${produkt.id}</td>
@@ -98,6 +103,5 @@
     </table>
     <p>${pustyWynik}</p>
 </div>
-
 </body>
 </html>

@@ -14,7 +14,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/registerStyl.css" type="text/css">
-    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/loginStyl.css" type="text/css">
+    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/loginStyle.css" type="text/css">
     <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon" />
 </head>
 <body>
@@ -45,7 +45,7 @@
     </form>
 
         <p>Wróć na stronę logowania </p>
-<a href=login.jsp> <img src="Images/return.png" alt="Przenosi na poprzednią stronę" width="60" height="60" id="returnImage"></a>
+<a href=login.jsp> <img src="Images/return.png" alt="Przenosi na poprzednią stronę" width="60" height="60" id="goBack"></a>
 
 </div>
 <div id="homeButtonDiv">
