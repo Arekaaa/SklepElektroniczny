@@ -2,5 +2,5 @@ Aplikacja webowa o tematyce Sklepu Elektronicznego opartego na relacyjnej bazie 
 
 
 TODO:
--5 Asercji
+-5 Asercji<br/>
 -10 Wyjątków
