@@ -22,6 +22,8 @@ public class ShowProductController extends HttpServlet {
             try {
                 List<ProductBean> listaProduktow = productDao.showProducts();
                 if(productDao.isNieZnaleziono()){
+                    productDao.setMetodaSortowania(metoda);
+                    request.setAttribute("metoda",metoda);
                     request.setAttribute("powitanie", LoginDao.getWitaj());
                     request.setAttribute("iloscProduktow", productDao.getIlosc());
                     request.setAttribute("kwotaProduktow",productDao.getKwota());

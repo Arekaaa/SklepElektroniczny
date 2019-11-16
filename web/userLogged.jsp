@@ -64,25 +64,25 @@
                     <img src="Images/arrow-down.png" id="descId" alt="Sortuje malejąco ID"></a>
                 </th>
                 <th>Nazwa<br><br/>
-                    <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Id&descOrAsc=ASC" >
+                    <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Nazwa&descOrAsc=ASC" >
                     <img src="Images/arrow-up.png" id="ascNazwa" alt="Sortuje rosnąco nazwę"></a>
                     <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Nazwa&descOrAsc=DESC" >
                     <img src="Images/arrow-down.png" id="descNazwa" alt="Sortuje malejąco nazwę"></a>
                 </th>
                 <th>Producent<br><br/>
-                    <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Id&descOrAsc=ASC" >
+                    <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Producent&descOrAsc=ASC" >
                     <img src="Images/arrow-up.png" id="ascProducent" alt="Sortuje rosnąco producenta"></a>
                     <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Producent&descOrAsc=DESC" >
                     <img src="Images/arrow-down.png" id="descProducent" alt="Sortuje malejąco producenta"></a>
                 </th>
                 <th>Cena(zł)<br><br/>
-                    <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Id&descOrAsc=ASC" >
+                    <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Cena&descOrAsc=ASC" >
                     <img src="Images/arrow-up.png" id="ascCena" alt="Sortuje rosnąco cenę"></a>
                     <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Cena&descOrAsc=DESC" >
                     <img src="Images/arrow-down.png" id="descCena" alt="Sortuje malejąco cenę"></a>
                 </th>
                 <th>Ilość<br/>(w sztukach)<br/>
-                    <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Id&descOrAsc=ASC" >
+                    <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Ilosc&descOrAsc=ASC" >
                     <img src="Images/arrow-up.png" id="ascIlosc" alt="Sortuje rosnąco ilością"></a>
                     <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Ilosc&descOrAsc=DESC" >
                     <img src="Images/arrow-down.png" id="descIlosc" alt="Sortuje malejąco ilością"></a>

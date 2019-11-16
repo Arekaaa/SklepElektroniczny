@@ -27,6 +27,9 @@ public class SearchProductController extends HttpServlet {
                                                                                                     // aby metoda searchProduct w klasie ProductDao miała do nich dostęp
 
                 if(productDao.isNieZnaleziono()){
+                    metoda =0;
+                    productDao.setMetodaSortowania(metoda);
+                    request.setAttribute("metoda",metoda);
                     request.setAttribute("powitanie", LoginDao.getWitaj());
                     request.setAttribute("iloscProduktow", productDao.getIlosc());
                     request.setAttribute("kwotaProduktow",productDao.getKwota());

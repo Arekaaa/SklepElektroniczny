@@ -250,8 +250,6 @@ public class ProductDao {
     }
         public List<ProductBean> searchProduct(ProductDao product) throws SQLException{
             List<ProductBean> listaProduktowWyszukana = new ArrayList<ProductBean>();
-            LoginDao.preparingDB();
-            preparingTableProducts();
             sumujWartosc();
             sprawdzIlosc();
             String searchProductQuery = "SELECT * FROM produkty WHERE "+typWyszukiwania+" LIKE '"+wprowadzonaWartosc+"%"+"'";
@@ -326,8 +324,6 @@ public class ProductDao {
         }
         return listaProduktowSortowana;
     }
-
-
 
 
     //Gettery/settery klasy ProductDao
