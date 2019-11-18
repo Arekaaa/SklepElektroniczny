@@ -25,7 +25,7 @@ public class ConnectionManager {
         }
         catch(ClassNotFoundException e)
         {
-            System.out.println(e);
+            e.printStackTrace();
         }
         return con;
     }
@@ -46,7 +46,7 @@ public class ConnectionManager {
         }
         catch(ClassNotFoundException e)
         {
-            System.out.println(e);
+            e.printStackTrace();
         }
         return con;
     }

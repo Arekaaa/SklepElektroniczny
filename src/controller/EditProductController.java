@@ -13,18 +13,18 @@ import java.io.IOException;
 @WebServlet("/editProduct")
 public class EditProductController extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductBean produkt = new ProductBean();
-        ProductDao productDao = new ProductDao();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+       try{
+            ProductBean produkt = new ProductBean();
+            ProductDao productDao = new ProductDao();
+            produkt.setId(Integer.parseInt(request.getParameter("ID")));
+            produkt.setNazwa(request.getParameter("nazwa"));
+            produkt.setProducent(request.getParameter("producent"));
+            produkt.setCena(Float.parseFloat((request.getParameter("cena"))));
+            produkt.setIlosc(Integer.parseInt(request.getParameter("ilosc")));
 
-        produkt.setId(Integer.parseInt(request.getParameter("ID")));
-        produkt.setNazwa(request.getParameter("nazwa"));
-        produkt.setProducent(request.getParameter("producent"));
-        produkt.setCena(Float.parseFloat((request.getParameter("cena"))));
-        produkt.setIlosc(Integer.parseInt(request.getParameter("ilosc")));
+            productDao.editProduct(produkt); //Inicjalizujemy dane odczytane z fieldów JSP aby metoda editProduct w klasie ProductDao miała do nich dostęp
 
-        productDao.editProduct(produkt); //Inicjalizujemy dane odczytane z fieldów JSP aby metoda editProduct w klasie ProductDao miała do nich dostęp
-        try{
             if (produkt.isDodany()) {
                 request.setAttribute("alertColor", "green");
                 request.setAttribute("alert", "Produkt został poprawnie edytowany!");
@@ -35,9 +35,10 @@ public class EditProductController extends HttpServlet {
                 request.setAttribute("alert", "Błąd podczas edycji produktu!");
                 request.getRequestDispatcher("productChanged.jsp").forward(request, response);
             }
-        } catch (ServletException e) {
-            e.printStackTrace();
+        } catch (NumberFormatException | ServletException e) {
+           e.printStackTrace();
+           throw new RuntimeException("Błąd związany z servletem EditProduct");
         }
-        response.sendRedirect("productChanged.jsp");
+        //response.sendRedirect("productChanged.jsp");
     }
 }

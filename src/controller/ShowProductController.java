@@ -10,17 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/showProduct")
 public class ShowProductController extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductDao productDao = new ProductDao();
-        int metoda =0;
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-            try {
+        try {
+                ProductDao productDao = new ProductDao();
+                int metoda =0;
                 List<ProductBean> listaProduktow = productDao.showProducts();
+
                 if(productDao.isNieZnaleziono()){
                     productDao.setMetodaSortowania(metoda);
                     request.setAttribute("metoda",metoda);
@@ -39,8 +39,9 @@ public class ShowProductController extends HttpServlet {
                     request.setAttribute("listaProduktow", listaProduktow);
                     request.getRequestDispatcher("userLogged.jsp").forward(request, response);
                 }
-            } catch (ServletException | SQLException ex) {
-                throw new ServletException("Nie można pobrać produktów z bazy danych", ex);
+            } catch (ServletException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Błąd związany z servletem ShowProduct");
             }
         }
     }

@@ -14,45 +14,62 @@ public class LoginDao {
     private static String witaj;
 
 
-    static void preparingDB(){
-
+    static void preparingDB() {
         String createDB = "CREATE DATABASE IF NOT EXISTS sklep_elektroniczny";
 
         try {
             connection = ConnectionManager.connectionToCreateDB();
             if (connection == null) {
-                throw new RuntimeException("Brak połączenia");
+                throw new RuntimeException("Brak połączenia z bazą danych");
             }
             statement = connection.createStatement();
             statement.executeUpdate(createDB);
-            statement.close();
-            connection.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) { /* */}
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) { /* */}
+            }
         }
-
     }
     static void preparingTableUsers(){
-
         String createTableUsers = "CREATE TABLE IF NOT EXISTS " +
                 "uzytkownik (ID int(10) NOT NULL AUTO_INCREMENT, Imie varchar(30) NOT NULL, Nazwisko varchar(30) NOT NULL, " +
                 "Login varchar(30) NOT NULL, Haslo varchar(30) NOT NULL, Mail varchar(30) NOT NULL, Primary Key(ID))";
         try {
             connection = ConnectionManager.connectionOthers();
             if (connection == null) {
-                throw new RuntimeException("Brak połączenia");
+                throw new RuntimeException("Brak połączenia z bazą danych");
             }
             statement = connection.createStatement();
             statement.executeUpdate(createTableUsers);
-            statement.close();
-            connection.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
+        }
+        finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) { /* */}
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) { /* */}
+            }
         }
     }
 
     public static void login(UserBean user) { //Tworzymy statyczną metodę o nazwie login która przyjmuję jako argument obiekt bean klasy UserBean
-
         String login = user.getLogin();
         String haslo = user.getHaslo();
         String searchQuery =
@@ -68,7 +85,7 @@ public class LoginDao {
                 //LOGOWANIE
                 connection = ConnectionManager.connectionOthers();
                 if (connection == null) {
-                    throw new RuntimeException("Brak połączenia");
+                    throw new RuntimeException("Brak połączenia z bazą danych");
                 }
                 statement = connection.createStatement();
                 resultSet = statement.executeQuery(searchQuery);
@@ -82,11 +99,26 @@ public class LoginDao {
                         user.setZalogowany(false);
                     }
                 }
-                resultSet.close();
-                statement.close();
-                connection.close();
-            } catch (SQLException ex) {
-                System.out.println("Błąd przy logowaniu ! " + ex);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
+            }
+            finally {
+                if (resultSet != null) {
+                    try {
+                        resultSet.close();
+                    } catch (SQLException e) { /* */}
+                }
+                if (statement != null) {
+                    try {
+                        statement.close();
+                    } catch (SQLException e) { /* */}
+                }
+                if (connection != null) {
+                    try {
+                        connection.close();
+                    } catch (SQLException e) { /* */}
+                }
             }
         }
 

@@ -9,20 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/searchProduct")
 public class SearchProductController extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductDao productDao = new ProductDao();
-        productDao.setTypWyszukiwania(request.getParameter("typWyszukiwania"));
-        productDao.setWprowadzonaWartosc(request.getParameter("szukaj"));
-        String typWyszukiwania = request.getParameter("typWyszukiwania");
-        String wprowadzonaWartosc = request.getParameter("szukaj");
-        int metoda;
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
+                ProductDao productDao = new ProductDao();
+                productDao.setTypWyszukiwania(request.getParameter("typWyszukiwania"));
+                productDao.setWprowadzonaWartosc(request.getParameter("szukaj"));
+                String typWyszukiwania = request.getParameter("typWyszukiwania");
+                String wprowadzonaWartosc = request.getParameter("szukaj");
+                int metoda;
                 List<ProductBean> listaProduktowWyszukana = productDao.searchProduct(productDao); //Do naszej listy produktów inicjalizujemy dane odczytane z fieldów JSP
                                                                                                     // aby metoda searchProduct w klasie ProductDao miała do nich dostęp
 
@@ -48,11 +46,10 @@ public class SearchProductController extends HttpServlet {
                     request.setAttribute("listaProduktow", listaProduktowWyszukana);
                     request.getRequestDispatcher("userLogged.jsp").forward(request, response);
                 }
-            } catch (ServletException | SQLException ex) {
-                throw new ServletException("Nie można pobrać produktów z bazy danych", ex);
+            } catch (ServletException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Błąd związany z servletem SearchProduct");
             }
-
-
         }
 }
 

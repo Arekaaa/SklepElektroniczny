@@ -12,7 +12,6 @@ public class RegisterDao {
     private static ResultSet resultSet = null;
     private static Statement statement = null;
     public static void register(UserBean user) { //Tworzymy statyczną metodę o nazwie register która przyjmuję jako argument obiekt bean klasy UserBean
-
         String login = user.getLogin();
         String haslo = user.getHaslo();
         String imie = user.getImie();
@@ -36,7 +35,7 @@ public class RegisterDao {
            try {
                connection = ConnectionManager.connectionOthers();
                if (connection == null) {
-                   throw new RuntimeException("Brak połączenia");
+                   throw new RuntimeException("Brak połączenia z bazą danych");
                }
                statement = connection.createStatement();
                statement.executeQuery(searchQuery);
@@ -46,26 +45,52 @@ public class RegisterDao {
                        nieIstnieje = false;
                    }
                }
-               resultSet.close();
-               statement.close();
-               connection.close();
-           } catch (SQLException ex) {
-               ex.printStackTrace();
+           } catch (SQLException e) {
+               e.printStackTrace();
+               throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
+           }
+           finally {
+               if (resultSet != null) {
+                   try {
+                       resultSet.close();
+                   } catch (SQLException e) { /* */}
+               }
+               if (statement != null) {
+                   try {
+                       statement.close();
+                   } catch (SQLException e) { /* */}
+               }
+               if (connection != null) {
+                   try {
+                       connection.close();
+                   } catch (SQLException e) { /* */}
+               }
            }
            //REJESTRACJA NOWEGO USERA
            if (nieIstnieje) {
                try {
                    connection = ConnectionManager.connectionOthers();
                    if (connection == null) {
-                       throw new RuntimeException("Brak połączenia");
+                       throw new RuntimeException("Brak połączenia z bazą danych");
                    }
                    statement = connection.createStatement();
                    statement.executeUpdate(insertUser);
                    user.setZarejestrowany(true);
-                   statement.close();
-                   connection.close();
-               } catch (SQLException ex) {
-                   System.out.println("Błąd przy rejestracji ! " + ex);
+               } catch (SQLException e) {
+                   e.printStackTrace();
+                   throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
+               }
+               finally {
+                   if (statement != null) {
+                       try {
+                           statement.close();
+                       } catch (SQLException e) { /* */}
+                   }
+                   if (connection != null) {
+                       try {
+                           connection.close();
+                       } catch (SQLException e) { /* */}
+                   }
                }
            }
        }

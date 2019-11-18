@@ -19,6 +19,24 @@
         <servlet-name> RegisterController </servlet-name>
         <url-pattern>/registered </url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name> ExceptionHandlerServlet </servlet-name>
+        <servlet-class>exceptionHandler.ExceptionHandlerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name> ExceptionHandlerServlet </servlet-name>
+        <url-pattern>/error</url-pattern>
+    </servlet-mapping>
 
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/exceptionHandlerServlet</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/exceptionHandlerServlet</location>
+    </error-page>
 
 </web-app>

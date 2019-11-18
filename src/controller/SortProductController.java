@@ -10,25 +10,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/sortProduct")
 public class SortProductController extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            ProductDao productDao = new ProductDao();
-            productDao.setTypWyszukiwania(request.getParameter("typ"));
-            productDao.setWprowadzonaWartosc(request.getParameter("wartosc"));
-            productDao.setTypSortowania(request.getParameter("sortID"));
-            productDao.setDescOrAsc(request.getParameter("descOrAsc"));
-            productDao.setMetodaSortowania(Integer.parseInt(request.getParameter("metoda")));
-            String typWyszukiwania = request.getParameter("typ");
-            String wprowadzonaWartosc = request.getParameter("wartosc");
-            int metoda=Integer.parseInt(request.getParameter("metoda"));
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+            try{
+                ProductDao productDao = new ProductDao();
+                productDao.setTypWyszukiwania(request.getParameter("typ"));
+                productDao.setWprowadzonaWartosc(request.getParameter("wartosc"));
+                productDao.setTypSortowania(request.getParameter("sortID"));
+                productDao.setDescOrAsc(request.getParameter("descOrAsc"));
+                productDao.setMetodaSortowania(Integer.parseInt(request.getParameter("metoda")));
+                String typWyszukiwania = request.getParameter("typ");
+                String wprowadzonaWartosc = request.getParameter("wartosc");
+                int metoda = Integer.parseInt(request.getParameter("metoda"));
 
-
-            try {
                 List<ProductBean> listaProduktowPosortowana = productDao.sortProductMethod(productDao); //Do naszej listy produktów inicjalizujemy dane odczytane z fieldów JSP
                 // aby metoda searchProduct w klasie ProductDao miała do nich dostęp
                     request.setAttribute("metoda",metoda);
@@ -40,8 +38,9 @@ public class SortProductController extends HttpServlet {
                     request.setAttribute("listaProduktow", listaProduktowPosortowana);
                     request.getRequestDispatcher("userLogged.jsp").forward(request, response);
 
-            } catch (ServletException | SQLException ex) {
-                throw new ServletException("Nie można pobrać produktów z bazy danych", ex);
+            } catch (NumberFormatException | ServletException e) { // Wyjątek dotyczący odczytania w funkcji parse stringu zamiast liczby
+                e.printStackTrace();
+                throw new RuntimeException("Błąd związany z servletem SortProduct");
             }
     }
 }

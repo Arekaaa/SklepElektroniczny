@@ -13,7 +13,7 @@ import java.io.IOException;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
             UserBean user = new UserBean();
             user.setLogin(request.getParameter("login"));
@@ -28,6 +28,7 @@ public class LoginController extends HttpServlet {
             }
         } catch (ServletException e) {
             e.printStackTrace();
+            throw new RuntimeException("Błąd związany z servletem LoginController");
         }
 
     }

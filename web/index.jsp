@@ -30,8 +30,8 @@
   Zaloguj się aby rozpocząć.
   </h1>
 <div id="footer">
-    Autorzy aplikacji:<br></br>
-        Arkadiusz Pajor<br>
+    Autorzy aplikacji:<br/>
+        Arkadiusz Pajor<br/>
         Mateusz Ornat
     </div>
   </body>

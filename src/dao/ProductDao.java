@@ -16,84 +16,125 @@ public class ProductDao {
     private int metodaSortowania=0;
     private float kwota=0;
     private boolean nieZnaleziono=false;
-    //private String searchSortQuery=null;
     private String typWyszukiwania=null;
     private String wprowadzonaWartosc=null;
     private String descOrAsc=null;
 
     private static void preparingTableProducts() {
-
-        String createTableUsers = "CREATE TABLE IF NOT EXISTS " +
-                "produkty (ID int(10) NOT NULL AUTO_INCREMENT, Nazwa varchar(30) NOT NULL, Producent varchar(30) NOT NULL, " +
-                "Cena float(10) NOT NULL, Ilosc int(10) NOT NULL, Primary Key(ID))";
         try {
+            String createTableUsers = "CREATE TABLE IF NOT EXISTS " +
+                    "produkty (ID int(10) NOT NULL AUTO_INCREMENT, Nazwa varchar(30) NOT NULL, Producent varchar(30) NOT NULL, " +
+                    "Cena float(10) NOT NULL, Ilosc int(10) NOT NULL, Primary Key(ID))";
+
             connection = ConnectionManager.connectionOthers();
             if (connection == null) {
-                throw new RuntimeException("Brak połączenia");
+                throw new RuntimeException("Brak połączenia z bazą danych");
             }
             statement = connection.createStatement();
             statement.executeUpdate(createTableUsers);
-            statement.close();
-            connection.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
+        }
+        finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) { /* */}
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) { /* */}
+            }
+        }
     }
 
     private void sprawdzIlosc(){
-        String sumujProdukty ="SELECT SUM(ilosc) AS podliczenie FROM produkty";
-
         try {
+            String sumujProdukty ="SELECT SUM(ilosc) AS podliczenie FROM produkty";
+
             connection = ConnectionManager.connectionOthers();
             if (connection == null) {
-                throw new RuntimeException("Brak połączenia");
+                throw new RuntimeException("Brak połączenia z bazą danych");
             }
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sumujProdukty);
             if(resultSet.next()) {
                 ilosc = resultSet.getInt(1);
             }
-            resultSet.close();
-            statement.close();
-            connection.close();
-        } catch (SQLException ex) {
-            System.out.println("Błąd bazy danych ! " + ex);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
+        }
+        finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) { /* */}
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) { /* */}
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) { /* */}
+            }
         }
     }
     private void sumujWartosc(){
-        String sumujKwote ="SELECT SUM(cena*ilosc) AS wartosc FROM produkty";
-
         try {
+            String sumujKwote ="SELECT SUM(cena*ilosc) AS wartosc FROM produkty";
+
             connection = ConnectionManager.connectionOthers();
             if (connection == null) {
-                throw new RuntimeException("Brak połączenia");
+                throw new RuntimeException("Brak połączenia z bazą danych");
             }
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sumujKwote);
             if(resultSet.next()) {
                 kwota = resultSet.getFloat(1);
             }
-            resultSet.close();
-            statement.close();
-            connection.close();
-        } catch (SQLException ex) {
-            System.out.println("Błąd bazy danych ! " + ex);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
+        }
+        finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) { /* */}
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) { /* */}
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) { /* */}
+            }
         }
     }
 
-    public List<ProductBean> showProducts() throws SQLException {
+    public List<ProductBean> showProducts() {
         List<ProductBean> listaProduktow = new ArrayList<ProductBean>();
         LoginDao.preparingDB();
         preparingTableProducts();
         sumujWartosc();
         sprawdzIlosc();
 
-        String showDefaultProducts = "SELECT * FROM produkty";
         try {
+            String showDefaultProducts = "SELECT * FROM produkty";
+
             connection = ConnectionManager.connectionOthers();
             if (connection == null) {
-                throw new RuntimeException("Brak połączenia");
+                throw new RuntimeException("Brak połączenia z bazą danych");
             }
             statement = connection.createStatement();
             resultSet = statement.executeQuery(showDefaultProducts);
@@ -111,24 +152,39 @@ public class ProductDao {
                     listaProduktow.add(produkt);
                 }while (resultSet.next());
             }
-            resultSet.close();
-            statement.close();
-            connection.close();
-        } catch (SQLException ex) {
-            System.out.println("Błąd bazy danychu ! " + ex);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
+        }
+        finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) { /* */}
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) { /* */}
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) { /* */}
+            }
         }
         return listaProduktow;
     }
 
     public void addProduct(ProductBean product) {
-         boolean istnieje = false;
+        LoginDao.preparingDB();
+        preparingTableProducts();
+        boolean istnieje = false;
         String nazwa = product.getNazwa();
         String producent = product.getProducent();
         float cena = product.getCena();
         int ilosc = product.getIlosc();
 
-            LoginDao.preparingDB();
-            preparingTableProducts();
             try {
                 String searchQuery =
                         "SELECT * FROM produkty WHERE Nazwa='"
@@ -139,7 +195,7 @@ public class ProductDao {
 
                 connection = ConnectionManager.connectionOthers();
                 if (connection == null) {
-                    throw new RuntimeException("Brak połączenia");
+                    throw new RuntimeException("Brak połączenia z bazą danych");
                 }
                 statement = connection.createStatement();
                 statement.executeQuery(searchQuery);
@@ -149,42 +205,69 @@ public class ProductDao {
                         istnieje = true;
                     }
                 }
-                resultSet.close();
-                statement.close();
-                connection.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
+            }
+            finally {
+                if (resultSet != null) {
+                    try {
+                        resultSet.close();
+                    } catch (SQLException e) { /* */}
+                }
+                if (statement != null) {
+                    try {
+                        statement.close();
+                    } catch (SQLException e) { /* */}
+                }
+                if (connection != null) {
+                    try {
+                        connection.close();
+                    } catch (SQLException e) { /* */}
+                }
             }
 
             if (!istnieje) {
-                String insertProduct = "INSERT INTO produkty VALUES (NULL,'" + nazwa + "','" + producent + "','" + cena + "','" + ilosc + "')";
                 try {
+                    String insertProduct = "INSERT INTO produkty VALUES (NULL,'" + nazwa + "','" + producent + "','" + cena + "','" + ilosc + "')";
+
                     connection = ConnectionManager.connectionOthers();
                     if (connection == null) {
-                        throw new RuntimeException("Brak połączenia");
+                        throw new RuntimeException("Brak połączenia z bazą danych");
                     }
                     statement = connection.createStatement();
                     statement.executeUpdate(insertProduct);
                     product.setDodany(true);
-                    statement.close();
-                    connection.close();
                     showProducts();
-
-                } catch (SQLException ex) {
-                    System.out.println("Błąd bazy danych ! " + ex);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
+                }
+                finally {
+                    if (statement != null) {
+                        try {
+                            statement.close();
+                        } catch (SQLException e) { /* */}
+                    }
+                    if (connection != null) {
+                        try {
+                            connection.close();
+                        } catch (SQLException e) { /* */}
+                    }
                 }
             }
         }
 
-    public List<ProductBean> showProductByID(ProductBean produkt) throws SQLException {
+    public List<ProductBean> showProductByID(ProductBean produkt)  {
         List<ProductBean> produktById = new ArrayList<ProductBean>();
         int id = produkt.getId();
 
-        String searchProductQuery = "SELECT * FROM produkty WHERE ID ='"+id+"'";
         try {
+            String searchProductQuery = "SELECT * FROM produkty WHERE ID ='"+id+"'";
+
             connection = ConnectionManager.connectionOthers();
             if (connection == null) {
-                throw new RuntimeException("Brak połączenia");
+                throw new RuntimeException("Brak połączenia z bazą danych");
             }
             statement = connection.createStatement();
             resultSet = statement.executeQuery(searchProductQuery);
@@ -197,11 +280,26 @@ public class ProductDao {
                     produktById.add(produkt);
                 }
             }
-            resultSet.close();
-            statement.close();
-            connection.close();
-        } catch (SQLException ex) {
-            System.out.println("Błąd bazy danychu ! " + ex);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
+        }
+        finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) { /* */}
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) { /* */}
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) { /* */}
+            }
         }
         return produktById;
     }
@@ -213,51 +311,74 @@ public class ProductDao {
             float cena = product.getCena();
             int ilosc = product.getIlosc();
 
-                String updateProduct = "UPDATE produkty SET Nazwa = '"+nazwa+ "',"+ "Producent = '"+producent+ "',"+"Cena ='"+cena+"',"+"Ilosc ='"+ilosc+"'"+"WHERE ID ='"+id+"'";
                 try {
+                    String updateProduct = "UPDATE produkty SET Nazwa = '"+nazwa+ "',"+ "Producent = '"+producent+ "',"+"Cena ='"+cena+"',"+"Ilosc ='"+ilosc+"'"+"WHERE ID ='"+id+"'";
+
                     connection = ConnectionManager.connectionOthers();
                     if (connection == null) {
-                        throw new RuntimeException("Brak połączenia");
+                        throw new RuntimeException("Brak połączenia z bazą danych");
                     }
                     statement = connection.createStatement();
                     statement.executeUpdate(updateProduct);
                     product.setDodany(true);
-                    statement.close();
-                    connection.close();
                     showProducts();
-
-                } catch (SQLException ex) {
-                    System.out.println("Błąd bazy danych ! " + ex);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
+                }
+                finally {
+                    if (statement != null) {
+                        try {
+                            statement.close();
+                        } catch (SQLException e) { /* */}
+                    }
+                    if (connection != null) {
+                        try {
+                            connection.close();
+                        } catch (SQLException e) { /* */}
+                    }
                 }
             }
 
-
-    public void deleteProduct(ProductBean product) throws SQLException {
+    public void deleteProduct(ProductBean product) {
         int id = product.getId();
-        String deleteProduct = "DELETE FROM produkty WHERE ID ='"+id+"'";
         try {
+            String deleteProduct = "DELETE FROM produkty WHERE ID ='"+id+"'";
+
             connection = ConnectionManager.connectionOthers();
             if (connection == null) {
-                throw new RuntimeException("Brak połączenia");
+                throw new RuntimeException("Brak połączenia z bazą danych");
             }
             statement = connection.createStatement();
             statement.executeUpdate(deleteProduct);
-            statement.close();
-            connection.close();
-        } catch (SQLException ex) {
-            System.out.println("Błąd bazy danych ! " + ex);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
+        }
+        finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) { /* */}
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) { /* */}
+            }
         }
     }
-        public List<ProductBean> searchProduct(ProductDao product) throws SQLException{
+        public List<ProductBean> searchProduct(ProductDao product) {
             List<ProductBean> listaProduktowWyszukana = new ArrayList<ProductBean>();
             sumujWartosc();
             sprawdzIlosc();
-            String searchProductQuery = "SELECT * FROM produkty WHERE "+typWyszukiwania+" LIKE '"+wprowadzonaWartosc+"%"+"'";
 
             try {
+                String searchProductQuery = "SELECT * FROM produkty WHERE "+typWyszukiwania+" LIKE '"+wprowadzonaWartosc+"%"+"'";
+
                 connection = ConnectionManager.connectionOthers();
                 if (connection == null) {
-                    throw new RuntimeException("Brak połączenia");
+                    throw new RuntimeException("Brak połączenia z bazą danych");
                 }
                 statement = connection.createStatement();
                 resultSet = statement.executeQuery(searchProductQuery);
@@ -275,30 +396,47 @@ public class ProductDao {
                         listaProduktowWyszukana.add(produkt);
                     }while (resultSet.next());
                 }
-                resultSet.close();
-                statement.close();
-                connection.close();
-            } catch (SQLException ex) {
-                System.out.println("Błąd bazy danych ! " + ex);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
+            }
+            finally {
+                if (resultSet != null) {
+                    try {
+                        resultSet.close();
+                    } catch (SQLException e) { /* */}
+                }
+                if (statement != null) {
+                    try {
+                        statement.close();
+                    } catch (SQLException e) { /* */}
+                }
+                if (connection != null) {
+                    try {
+                        connection.close();
+                    } catch (SQLException e) { /* */}
+                }
             }
             return listaProduktowWyszukana;
         }
 
-        public List<ProductBean> sortProductMethod(ProductDao product) throws SQLException{
-        List<ProductBean> listaProduktowSortowana = new ArrayList<ProductBean>();
+        public List<ProductBean> sortProductMethod(ProductDao product) {
+        List<ProductBean> listaProduktowPosortowana = new ArrayList<ProductBean>();
         sumujWartosc();
         sprawdzIlosc();
-            String searchSortQuery;
-            if(metodaSortowania==1){
-                searchSortQuery = "SELECT * FROM produkty WHERE " + typWyszukiwania + " LIKE '" +wprowadzonaWartosc+ "%'"+ "ORDER BY " +typSortowania +" "+descOrAsc;
+        String searchSortQuery;
+
+        if(metodaSortowania==1){
+            searchSortQuery = "SELECT * FROM produkty WHERE " + typWyszukiwania + " LIKE '" +wprowadzonaWartosc+ "%'"+ "ORDER BY " +typSortowania +" "+descOrAsc;
             }
-           else {
-                searchSortQuery = "SELECT * FROM produkty ORDER BY "+typSortowania +" "+descOrAsc;
+        else {
+            searchSortQuery = "SELECT * FROM produkty ORDER BY "+typSortowania +" "+descOrAsc;
             }
+
         try {
             connection = ConnectionManager.connectionOthers();
             if (connection == null) {
-                throw new RuntimeException("Brak połączenia");
+                throw new RuntimeException("Brak połączenia z bazą danych");
             }
             statement = connection.createStatement();
             resultSet = statement.executeQuery(searchSortQuery);
@@ -313,20 +451,38 @@ public class ProductDao {
                     produkt.setProducent(resultSet.getString("Producent"));
                     produkt.setCena(resultSet.getFloat("Cena"));
                     produkt.setIlosc(resultSet.getInt("Ilosc"));
-                    listaProduktowSortowana.add(produkt);
+                    listaProduktowPosortowana.add(produkt);
                 }while (resultSet.next());
             }
             resultSet.close();
             statement.close();
             connection.close();
-        } catch (SQLException ex) {
-            System.out.println("Błąd bazy danych ! " + ex);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
         }
-        return listaProduktowSortowana;
+        finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) { /* */}
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) { /* */}
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) { /* */}
+            }
+        }
+        return listaProduktowPosortowana;
     }
 
 
-    //Gettery/settery klasy ProductDao
+    //Gettery, settery klasy ProductDao
     public int getIlosc() {
         return ilosc;
     }
