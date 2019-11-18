@@ -9,12 +9,12 @@ import java.io.IOException;
 
 @WebServlet("/exceptionHandlerServlet")
 public class ExceptionHandlerServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         Throwable throwable = (Throwable) request.getAttribute("javax.servlet.error.exception");
         Integer kodBledu = (Integer) request.getAttribute("javax.servlet.error.status_code");
-
         String Uri = (String) request.getAttribute("javax.servlet.error.request_uri");
+
         if (Uri == null) {
             Uri = "Nieznane";
         }
