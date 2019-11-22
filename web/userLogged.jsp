@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/mainStyle.css" type="text/css">
-    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/productStyl.css" type="text/css">
+    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/productStyle.css" type="text/css">
     <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon" />
 </head>
 <body>
@@ -102,6 +102,77 @@
         </c:forEach>
     </table>
     <p>${pustyWynik}</p>
+<div id="paginacja">
+    <c:choose>
+    <c:when test="${rodzajPaginacji ==0}">
+    <table align="center">
+        <tr>
+            <c:if test="${biezacaStrona != 1}"><%-- Jeśli strona jest nie rowna 1 to mozna isc na poprzednia strone --%>
+                <td><a href="${pageContext.request.contextPath}/showProduct?strona=${biezacaStrona - 1}"> << </a></td>
+            </c:if>
+            <c:forEach begin="1" end="${liczbaStron}" var="i">
+                <c:choose>
+                    <c:when test="${biezacaStrona eq i}"> <%--Wyswietla biezącą stronę Nie da sie kliknac drugi raz tej samej strony --%>
+                        <td><div id="kliknietaStrona">${i}</div></td>
+                    </c:when>
+                    <c:otherwise>
+                        <td><a href="${pageContext.request.contextPath}/showProduct?strona=${i}">${i}</a></td> <%-- Jeśli inna strona niz ta co jest to da sie kliknac --%>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+            <c:if test="${biezacaStrona lt liczbaStron}"> <%-- Jeśli strona jest mniejsza od ilosci wszystkich stron to mozna isc na nastepna strone --%>
+                <td><a href="${pageContext.request.contextPath}/showProduct?strona=${biezacaStrona + 1}"> >> </a></td>
+            </c:if>
+        </tr>
+    </table>
+    </c:when>
+    <c:when test="${rodzajPaginacji ==1}">
+        <table align="center">
+            <tr>
+                <c:if test="${biezacaStrona != 1}"><%-- Jeśli strona jest nie rowna 1 to mozna isc na poprzednia strone --%>
+                    <td><a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=<c:out value='${sortID}'/>&descOrAsc=<c:out value='${descOrAsc}'/>&strona=${biezacaStrona - 1}"> << </a></td>
+                </c:if>
+                <c:forEach begin="1" end="${liczbaStron}" var="i">
+                    <c:choose>
+                        <c:when test="${biezacaStrona eq i}"> <%--Wyswietla biezącą stronę Nie da sie kliknac drugi raz tej samej strony --%>
+                            <td><div id="kliknietaStrona1">${i}</div></td>
+                        </c:when>
+                        <c:otherwise>   <%-- Jeśli inna strona niz ta co jest to da sie kliknac --%>
+                            <td><a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=<c:out value='${sortID}'/>&descOrAsc=<c:out value='${descOrAsc}'/>&strona=${i}">${i}</a></td>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+                <c:if test="${biezacaStrona lt liczbaStron}"> <%-- Jeśli strona jest mniejsza od ilosci wszystkich stron to mozna isc na nastepna strone --%>
+                    <td><a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=<c:out value='${sortID}'/>&descOrAsc=<c:out value='${descOrAsc}'/>&strona=${biezacaStrona + 1}"> >> </a></td>
+                </c:if>
+            </tr>
+        </table>
+    </c:when>
+        <c:when test="${rodzajPaginacji ==2}">
+            <table align="center">
+                <tr>
+                    <c:if test="${biezacaStrona != 1}"><%-- Jeśli strona jest nie rowna 1 to mozna isc na poprzednia strone --%>
+                        <td><a href="${pageContext.request.contextPath}/searchProduct?typWyszukiwania=<c:out value='${typWyszukiwania}'/>&szukaj=<c:out value='${wprowadzonaWartosc}'/>&strona=${biezacaStrona - 1}"> << </a></td>
+                    </c:if>
+                    <c:forEach begin="1" end="${liczbaStron}" var="i">
+                        <c:choose>
+                            <c:when test="${biezacaStrona eq i}"> <%--Wyswietla biezącą stronę Nie da sie kliknac drugi raz tej samej strony --%>
+                                <td><div id="kliknietaStrona2">${i}</div></td>
+                            </c:when>
+                            <c:otherwise>
+                                <td><a href="${pageContext.request.contextPath}/searchProduct?typWyszukiwania=<c:out value='${typWyszukiwania}'/>&szukaj=<c:out value='${wprowadzonaWartosc}'/>&strona=${i}">${i}</a></td> <%-- Jeśli inna strona niz ta co jest to da sie kliknac --%>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                    <c:if test="${biezacaStrona lt liczbaStron}"> <%-- Jeśli strona jest mniejsza od ilosci wszystkich stron to mozna isc na nastepna strone --%>
+                        <td><a href="${pageContext.request.contextPath}/searchProduct?typWyszukiwania=<c:out value='${typWyszukiwania}'/>&szukaj=<c:out value='${wprowadzonaWartosc}'/>&strona=${biezacaStrona + 1}"> >> </a></td>
+                    </c:if>
+                </tr>
+            </table>
+        </c:when>
+    </c:choose>
+</div>
+
 </div>
 </body>
 </html>

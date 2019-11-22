@@ -12,6 +12,7 @@ public class ProductDao {
     private static ResultSet resultSet = null;
     private static Statement statement = null;
     private int ilosc=0;
+    private int liczbaRekordow=0;
     private String typSortowania=null;
     private int metodaSortowania=0;
     private float kwota=0;
@@ -20,7 +21,7 @@ public class ProductDao {
     private String wprowadzonaWartosc=null;
     private String descOrAsc=null;
 
-    private static void preparingTableProducts() {
+    public static void preparingTableProducts() {
         try {
             String createTableUsers = "CREATE TABLE IF NOT EXISTS " +
                     "produkty (ID int(10) NOT NULL AUTO_INCREMENT, Nazwa varchar(30) NOT NULL, Producent varchar(30) NOT NULL, " +
@@ -38,6 +39,77 @@ public class ProductDao {
             throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
         }
         finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) { /* */}
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) { /* */}
+            }
+        }
+    }
+
+    public void sumujRekordy(){
+        try {
+            String sumujRekordy ="SELECT COUNT(1) FROM produkty";
+
+            connection = ConnectionManager.connectionOthers();
+            if (connection == null) {
+                throw new RuntimeException("Brak połączenia z bazą danych");
+            }
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sumujRekordy);
+            if(resultSet.next()) {
+                liczbaRekordow = resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
+        }
+        finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) { /* */}
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) { /* */}
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) { /* */}
+            }
+        }
+    }
+    public void sumujRekordyWyszukane(){
+        try {
+            String sumujRekordy ="SELECT COUNT(1) FROM produkty  WHERE "+typWyszukiwania+" LIKE '"+wprowadzonaWartosc+"%"+"'";
+
+            connection = ConnectionManager.connectionOthers();
+            if (connection == null) {
+                throw new RuntimeException("Brak połączenia z bazą danych");
+            }
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sumujRekordy);
+            if(resultSet.next()) {
+                liczbaRekordow = resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
+        }
+        finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) { /* */}
+            }
             if (statement != null) {
                 try {
                     statement.close();
@@ -122,7 +194,7 @@ public class ProductDao {
         }
     }
 
-    public List<ProductBean> showProducts() {
+    public List<ProductBean> showProducts(int poczatkowyProdukt, int rekordyNaStrone) {
         List<ProductBean> listaProduktow = new ArrayList<ProductBean>();
         LoginDao.preparingDB();
         preparingTableProducts();
@@ -130,7 +202,7 @@ public class ProductDao {
         sprawdzIlosc();
 
         try {
-            String showDefaultProducts = "SELECT * FROM produkty";
+            String showDefaultProducts = "SELECT * FROM produkty LIMIT " + poczatkowyProdukt+ ", " + rekordyNaStrone;
 
             connection = ConnectionManager.connectionOthers();
             if (connection == null) {
@@ -238,7 +310,7 @@ public class ProductDao {
                     statement = connection.createStatement();
                     statement.executeUpdate(insertProduct);
                     product.setDodany(true);
-                    showProducts();
+                    //showProducts(liczbaRekordow,10);
                 } catch (SQLException e) {
                     e.printStackTrace();
                     throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
@@ -321,7 +393,7 @@ public class ProductDao {
                     statement = connection.createStatement();
                     statement.executeUpdate(updateProduct);
                     product.setDodany(true);
-                    showProducts();
+                    //showProducts();
                 } catch (SQLException e) {
                     e.printStackTrace();
                     throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
@@ -368,13 +440,13 @@ public class ProductDao {
             }
         }
     }
-        public List<ProductBean> searchProduct(ProductDao product) {
+        public List<ProductBean> searchProduct(int poczatkowyProdukt, int rekordyNaStrone) {
             List<ProductBean> listaProduktowWyszukana = new ArrayList<ProductBean>();
             sumujWartosc();
             sprawdzIlosc();
 
             try {
-                String searchProductQuery = "SELECT * FROM produkty WHERE "+typWyszukiwania+" LIKE '"+wprowadzonaWartosc+"%"+"'";
+                String searchProductQuery = "SELECT * FROM produkty WHERE "+typWyszukiwania+" LIKE '"+wprowadzonaWartosc+"%"+"'"+" LIMIT " + poczatkowyProdukt+ ", " + rekordyNaStrone;
 
                 connection = ConnectionManager.connectionOthers();
                 if (connection == null) {
@@ -420,17 +492,18 @@ public class ProductDao {
             return listaProduktowWyszukana;
         }
 
-        public List<ProductBean> sortProductMethod(ProductDao product) {
+        public List<ProductBean> sortProductMethod(int poczatkowyProdukt, int rekordyNaStrone) {
         List<ProductBean> listaProduktowPosortowana = new ArrayList<ProductBean>();
         sumujWartosc();
         sprawdzIlosc();
         String searchSortQuery;
 
         if(metodaSortowania==1){
-            searchSortQuery = "SELECT * FROM produkty WHERE " + typWyszukiwania + " LIKE '" +wprowadzonaWartosc+ "%'"+ "ORDER BY " +typSortowania +" "+descOrAsc;
+            searchSortQuery = "SELECT * FROM produkty WHERE " + typWyszukiwania + " LIKE '" +wprowadzonaWartosc+ "%'"+ "ORDER BY " +typSortowania +" "+descOrAsc+
+                    " LIMIT " + poczatkowyProdukt+ ", " + rekordyNaStrone;
             }
         else {
-            searchSortQuery = "SELECT * FROM produkty ORDER BY "+typSortowania +" "+descOrAsc;
+            searchSortQuery = "SELECT * FROM produkty ORDER BY "+typSortowania +" "+descOrAsc+" LIMIT " + poczatkowyProdukt+ ", " + rekordyNaStrone;
             }
 
         try {
@@ -510,8 +583,15 @@ public class ProductDao {
         this.wprowadzonaWartosc = wprowadzonaWartosc;
     }
 
+    public int getMetodaSortowania() {
+        return metodaSortowania;
+    }
     public void setMetodaSortowania(int metodaSortowania) {
         this.metodaSortowania = metodaSortowania;
+    }
+
+    public int getLiczbaRekordow() {
+        return liczbaRekordow;
     }
 }
 

@@ -14,7 +14,7 @@ public class LoginDao {
     private static String witaj;
 
 
-    static void preparingDB() {
+    public static void preparingDB() {
         String createDB = "CREATE DATABASE IF NOT EXISTS sklep_elektroniczny";
 
         try {
