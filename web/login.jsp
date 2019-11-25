@@ -20,30 +20,37 @@
 </head>
 
 <body>
-<h1>Panel logowania</h1>
-<div id="loginForm">
-    <form action="${pageContext.request.contextPath}/login" method="get">
-        <div id="labele">
-            <label for="login">Podaj swój login:</label>
-            <input type="text" name="login" id="login" required/><br><br/>
-         <label for="haslo">Podaj swoje hasło:</label>
-            <input type="password" name="haslo" id="haslo" required/></div><br/>
+
+<div id="container">
+
+    <div id="logoBar">
+        LOGOWANIE
+    </div>
+    <div id="lineBar"></div>
+
+    <div id="loginFormBar">
+        <form action="${pageContext.request.contextPath}/login" method="get">
+            <div id="labelBar">
+                <input type="text" name="login" id="login" required/><br><br/>
+                <input type="password" name="haslo" id="haslo" required/>
+            </div><br/>
 
         <input type="submit" value="Zaloguj" id="zalogujButton"><br/>
         <h2>${alert} </h2>
-
-
     </form>
-    <form action="register.jsp" method="get">
-        <p>Nie posiadasz konta ?</p>
-        <input type="submit" value="Zarejestruj się" id="rejestrujButton">
-    </form>
-</div>
-<div id="homeButtonDiv">
-    <p id="textHome">Powrót na stronę główną</p>
-    <a href=index.jsp id="homeButton"> <img src="Images/home.png" alt="Przenosi na stronę główną" width="60" height="60" id="przyciskHome"></a></div>
+
+        <form action="register.jsp" method="get">
+            <p>Nie posiadasz konta ?</p>
+            <input type="submit" value="Zarejestruj się" id="rejestrujButton">
+        </form>
+    </div>
+
+    <div id="homeButtonDiv">
+        <p id="textHome">Powrót na stronę główną</p>
+        <a href=index.jsp id="homeButton"> <img src="Images/canhome1.png" alt="Przenosi na stronę główną" width="60" height="60" id="przyciskHome"></a>
+    </div>
 <br/>
 
-
+</div>
 </body>
 </html>

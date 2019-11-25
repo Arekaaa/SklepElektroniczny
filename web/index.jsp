@@ -22,17 +22,32 @@
   </head>
 
   <body>
-  <div id="loginButtonDiv">
-    <a href =login.jsp id="loginButton"> Zaloguj się</a> </div>
- <img src="Images/logoSklep.png" alt="Logo sklepu elektronicznego" width="850" height="200" id="logo">
-  <br><br><br/>
-  <h1>Witaj na stronie głównej aplikacji wspomagającej sklep elektroniczny.<br/>
-  Zaloguj się aby rozpocząć.
-  </h1>
-<div id="footer">
-    Autorzy aplikacji:<br/>
-        Arkadiusz Pajor<br/>
-        Mateusz Ornat
-    </div>
+  <div id="container">
+      <div id="panelBar">
+          ELEKTWIN
+      </div>
+
+      <div id="content">
+          <div id="topBar">
+              <img src="Images/logocanva2icon.png" alt="Logo sklepu elektronicznego">
+          </div>
+          <div id="lineBar"></div>
+          <div id="bottomBar">
+              <h1>Witaj na stronie głównej aplikacji wspomagającej sklep elektroniczny.<br/>
+                  Zaloguj się aby rozpocząć.
+              </h1>
+          </div>
+          <div style="clear:both;"></div>
+
+         <div id="loginButtonDiv">
+            <a href =login.jsp id="loginButton"> Zaloguj się</a>
+         </div>
+      </div>
+
+        <div id="footer">
+            This page was created by @ArkadiuszPajor and @MateuszOrnat.<br> &copy All rights reserved.
+        </div>
+
+  </div>
   </body>
 </html>

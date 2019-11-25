@@ -8,7 +8,9 @@
           <element id="module-output" name="SklepElektroniczny" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="mysql-connector-java-5.1.37-bin" />
+          <element id="library" level="module" name="JUnit4" module-name="SklepElektroniczny" />
+          <element id="library" level="module" name="JUnit5.4" module-name="SklepElektroniczny" />
+          <element id="library" level="project" name="lib" />
         </element>
       </element>
     </root>

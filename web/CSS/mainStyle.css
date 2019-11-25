@@ -1,72 +1,125 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Poiret+One&display=swap&subset=latin-ext');
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
-
 body{
     background-color: #6699cc;
+    background-image: url("../Images/pageBackground.jpg");
+    background-size: cover;
+    font-family: 'Quicksand', sans-serif;
+    width: 100%;
 }
-
-h1{
-    text-align: center;
-    color:#294680;
-    font-family: Cambria, serif;
-}
-p {
-    text-align: center;
-    color: #294680;
-    font-family: Cambria, serif;
-    font-size: 20px;
-    font-weight: bold;
-}
-#logo{
-    display: block;
+#container {
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
-    max-width: 100%;
-    height: auto;
+}
+#panelBar {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 100px;
+    text-align: center;
+    color: #323232;
+    font-family: 'Quicksand', sans-serif;
+    letter-spacing: 10px;
+}
+#content {
+    width: 50%;
+    border-radius: 50px;
+    background-color:rgba(192,192,192,0.3);
+    padding-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#topBar {
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 76%;
+    text-align: center;
+}
+img  {
+    padding: 5px;
+    border-radius: 10px;
+    margin: auto;
+}
+#lineBar {
+    height: 2px;
+    width: 70%;
+    background-color: #323232;
+    margin: auto;
+    border-radius: 10px;
+}
+#bottomBar {
+    padding-top: 5px;
+    padding-bottom: 10px;
+    width: 76%;
+    font-size: 12px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+#footer {
+    clear: both;
+    width: 100%;
+    padding: 5px;
+    color: white;
+    text-align: center;
+    opacity: 0.7;
+}
+a#loginButton {
+    padding: 5px;
+}
+a#loginButton:hover {
+    background-color: #c81e0f;
+    color: white;
 }
 #loginButtonDiv{
-    position:fixed;
-    right:50px;
-    top:20px;
-    transition-duration: 0.4s;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 20px;
+    cursor: pointer;
+    text-align: center;
 }
 #loginButton:link, #loginButton:visited {
-    background-color:#6699cc; /* kolor wypełnienia*/
-    color:#294680; /* kolor napisu wewnątrz*/
+    background-color:#f2685c; /* kolor wypełnienia*/
+    color:#323232; /* kolor napisu wewnątrz*/
     text-align:center;
     text-decoration:none;
-    font-family: Cambria, serif;
+    border-radius: 10px;
+    font-family: 'Poiret One', cursive;
     font-size: 20px;
     font-weight: bold;
     box-shadow: 0 0 8px #294680;
     display:inline-block;
-    padding:30px 50px;
-}
-#loginButton:hover {
-    background-color:#5799db;
 
 }
-#loginButton:active {
-    background-color:#4c99e6;
+@media screen and (min-width: 600px) and (max-width: 800px){
+    #panelBar {
+        font-size: 80px;
+    }
+    #footer {
+        font-size: 12px;
+    }
+    img {
+        width: 210px;
+        height: 164px
+    }
 }
-#footer {
-    position: fixed;
-    font-size:20px;
-    font-weight: bold;
-    font-family: Cambria, serif;
-    left: 0;
-    bottom: 4cm;
-    width: 100%;
-    padding-top:10px;
-    padding-bottom:10px;
-    color: #294680;
-    text-align: center;
-}
-#textHome{
-    text-align: center;
-    color:#294680;
-    font-family: Cambria, serif;
-    font-size:20px;
-    font-weight: bold;
+@media screen and (min-width: 200px) and (max-width: 599px){
+    #panelBar {
+        font-size: 50px;
+    }
+    #footer {
+        font-size: 10px;
+    }
+    img {
+        width: 150px;
+        height: 106px
+    }
 }

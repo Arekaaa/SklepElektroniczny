@@ -1,119 +1,131 @@
+@import url('https://fonts.googleapis.com/css?family=Kulim+Park&display=swap&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Poiret+One&display=swap&subset=latin-ext');
+
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 body{
     background-color: #6699cc;
+    background-image: url("../Images/pageBackground.jpg");
+    background-size: cover;
+    font-family: 'Quicksand', sans-serif;
+    width: 100%;
 }
-h1{
+#container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#logoBar {
+    width: 100%;
+    font-size: 85px;
     text-align: center;
-    color:#294680;
-    font-family: Cambria, serif;
+    color: #323232;
+    font-family: 'Quicksand', sans-serif;
+    letter-spacing: 10px;
+    padding-top: 45px;
 }
-h2{
-     text-align: center;
-     color:red;
-    font-family: Cambria, serif;
-     font-size:15px;
-     text-shadow:0 0 1px red;
- }
+#lineBar {
+    height: 2px;
+    width: 70%;
+    background-color: #323232;
+    margin: auto;
+    border-radius: 10px;
+    padding-bottom: 20px;
+}
+#loginFormBar {
+    width: 50%;
+    background-color:rgba(192,192,192,0.3);
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+#homeButtonDiv {
+    clear: both;
+    width: 76%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-top: 5px;
+}
+#labelBar {
+    margin: auto;
+    text-align: center;
+    font-family: 'Kulim Park', sans-serif;
+}
+#zalogujButton {
+    margin: auto;
+    text-align: center;
+    display: block;
+}
+#rejestrujButton {
+    margin: auto;
+    text-align: center;
+    display: block;
+}
 p {
     text-align: center;
-    color: #294680;
-    font-family: Cambria, serif;
+    letter-spacing: 3px;
+    font-family: 'Kulim Park', sans-serif;
+    padding: 3px;
+    text-transform: uppercase;
+}
+input[type=text]::placeholder {
+    color: darkslategrey;
+    opacity: 0.8;
+}
+input[type=text],
+input[type=password]
+{
+    width: 300px;
+    background-color: #efefef;
+    color: #666;
+    border: 2px solid #ddd;
+    border-radius: 5px;
     font-size: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+    outline: none;
+    margin-top: 10px;
 }
-#goBack{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100%;
-    height: auto;
-    transition: transform .2s;
-}
-#goBack:hover{
-    transform: scale(1.3);
-}
-#textHome{
-    text-align: center;
-    color:#294680;
-    font-family: Cambria, serif;
+input[type=submit]
+{
+    width: 300px;
+    background-color: #f2685c;
+    font-family: 'Poiret One', cursive;
     font-size:20px;
-    font-weight: bold;
+    color: white;
+    padding: 15px 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    outline: none;
+    margin: auto;
 }
-#homeButtonDiv{
-    position:fixed;
-    left:50px;
-    top:50px;
+input[type=submit]:focus
+{
+    -webkit-box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
+    -moz-box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
+    box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
 }
-#przyciskHome{
-    position:fixed;
-    left:120px;
-    transition: transform .2s;
+input[type=submit]:hover
+{
+    background-color: #c81e0f;
 }
-#przyciskHome:hover{
-    transform: scale(1.3);
-}
-#loginForm{
-    height:460px;
-    width:600px;
-    background-color:silver;
-    display:block;
-    margin:auto;
-    border-radius: 15px;
-    font-family: Cambria, serif;
-    font-size:24pt;
-    color:#4299f0;
-    text-shadow:0 0 1px blue;
-    box-shadow: 0 0 15px blue;
-}
-#login{
-    margin-left:90px;
-    width:200px;
-    height:25px;
-    text-align:center;
-}
-#haslo{
-    margin-left:70px;
-    width:200px;
-    height:25px;
-    text-align:center;
-  }
-#login:focus, #haslo:focus{
-    outline: 4px solid #4299f0;
-}
-#login:hover, #haslo:hover{
-    background-color:#cce6ff;
-}
-#zalogujButton{
-    display: block;
-    height:50px;
-    width:120px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top:30px;
-    font-family: Cambria, serif;
-    font-size: 30px;
-    transition-duration: 0.4s;
-}
-#zalogujButton:hover{
-    outline: 5px solid #80bfff;
-}
-#rejestrujButton{
-    display: block;
-    height:50px;
-    width:150px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top:30px;
-    font-family: Cambria, serif;
-    font-size: 20px;
-    transition-duration: 0.4s;
-}
-#rejestrujButton:hover{
-    outline: 5px solid #80bfff;
-}
-#labele{
-    position:relative;
-    top:20px;
-    left:20px;
+input[type=text]:focus,
+input[type=password]:focus
+{
+    -webkit-box-shadow: 0px 0px 10px 2px rgba(204,204,204,0.9);
+    -moz-box-shadow: 0px 0px 10px 2px rgba(204,204,204,0.9);
+    box-shadow: 0px 0px 10px 2px rgba(204,204,204,0.9);
+    border: 1px solid #323232;
+    background-color: #e9f3e9;
+    color: #428c42;
 }
