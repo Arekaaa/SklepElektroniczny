@@ -15,11 +15,15 @@
     <title>Szczegóły błędu/wyjątku</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/errorStyle.css" type="text/css">
+    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/errorStyl.css" type="text/css">
     <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon" />
 </head>
 
 <body>
+
+<div id="container">
+    <div id="errorPanel">ERROR PAGE</div>
+    <div id="contentError">
 <c:choose>
         <c:when test="${kodBledu ==404}">
         <h3>Wystąpił błąd w aplikacji !</h3><br/>
@@ -28,20 +32,25 @@
         </c:when>
     <c:otherwise>
         <h3>Wystąpił wyjątek w aplikacji !</h3>
-        <ul><li><strong>Treść</strong>: ${tresc}</li>
-        <li><strong>Nazwa wyjątku</strong>: ${nazwa}</li>
-        <li><strong>Funkcja stwarzająca wyjątek</strong>: ${funkcja}</li>
-        <li><strong>Klasa z wyjątkiem</strong>: ${klasa}</li>
-        <li><strong>Dodatkowe wiadomości</strong>: Więcej informacji na temat wyjątku znajduje się w konsoli administratora.</li>
+        <ul><li><strong>Treść</strong>:</br> ${tresc}</li>
+        <li><strong>Nazwa wyjątku</strong>:</br> ${nazwa}</li>
+        <li><strong>Funkcja stwarzająca wyjątek</strong>:</br> ${funkcja}</li>
+        <li><strong>Klasa z wyjątkiem</strong>:</br> ${klasa}</li>
+        <li><strong>Dodatkowe wiadomości</strong>:</br> Więcej informacji na temat wyjątku znajduje się w konsoli administratora.</li>
         </ul>
     </c:otherwise>
 </c:choose>
-<br><br/>
-Skontaktuj się z administratorem aplikacji.<br/>
-Mail:kaktus@gmail.com
-<div id="homeButtonDiv">
-    <p id="textHome">Powrót na stronę główną</p>
-    <a href=index.jsp id="homeButton"> <img src="Images/home.png" alt="Przenosi na stronę główną" width="60" height="60" id="przyciskHome"></a></div>
+    </div>
+    <div id="adresMail">
+        Skontaktuj się z administratorem aplikacji.<br/>
+        MAIL:
+        <h1>admin.elektwin@gmail.com</h1>
+    </div>
+    <div id="homeButtonDiv">
+        <p id="textHome">Powrót na stronę główną</p>
+        <a href=index.jsp id="homeButton"> <img src="Images/canhome1.png" alt="Przenosi na stronę główną" width="70" height="70" id="przyciskHome"></a>
+    </div>
 <br/>
+</div>
 </body>
 </html>

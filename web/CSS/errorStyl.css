@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Kulim+Park&display=swap&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Poiret+One&display=swap&subset=latin-ext');
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-image: url("../Images/pageBackground.jpg");
+    background-size: cover;
+    width: 100%;
+}
+h3{
+    text-align: center;
+    color: #c81e0f;
+    font-family: 'Poiret One', cursive;
+    font-size: 40px;
+    padding-bottom: 15px;
+}
+#errorPanel {
+    width: 100%;
+    margin: auto;
+    font-family: 'Poiret One', cursive;
+    font-size: 75px;
+    letter-spacing: 10px;
+    text-align: center;
+    padding-top: 20px;
+}
+#contentError{
+    clear: both;
+    width: 80%;
+    background-color: rgba(192,192,192,0.3);
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px;
+    margin: auto;
+}
+ul li {
+    list-style-type: none;
+    font-family: 'Kulim Park', sans-serif;
+    font-size: 18px;
+}
+#adresMail {
+    clear: both;
+    width: 40%;
+    text-align: center;
+    margin: auto;
+    font-size: 18px;
+    font-family: 'Poiret One', cursive;
+    background-color: rgba(232,104,92,0.7);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 10px;
+    font-weight: bold;
+}
+#homeButtonDiv{
+    clear: both;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    font-family: 'Kulim Park', sans-serif;
+    font-size: 16px;
+    color: white;
+}
+h1 {
+    letter-spacing: 5px;
+    font-size: 16px;
+}
+#przyciskHome:hover{
+    transform: scale(1.3);
+}
