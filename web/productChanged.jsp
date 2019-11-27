@@ -13,11 +13,13 @@
     <title>Dodaj produkt</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/productStyle.css" type="text/css">
+    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/productStyl.css" type="text/css">
     <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/loginStyle.css" type="text/css">
     <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon" />
 </head>
 <body>
+
+<div id="changedTopSpace"></div>
 <div id="productChanged">
         <style type="text/css">
             h3{
@@ -27,7 +29,7 @@
     <br/>
     <p>Powrót </p>
     <form action="${pageContext.request.contextPath}/showProduct" method="get">
-        <input type="image"  src="Images/return.png" id="goBack" alt="Przenosi na poprzednią stronę">
+        <input type="image"  src="Images/return.png" id="goBack" alt="Przenosi na poprzednią stronę" width="50" height="50">
     </form>
 </div>
 </body>
