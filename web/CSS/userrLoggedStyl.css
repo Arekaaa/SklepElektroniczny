@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css?family=Kulim+Park&display=swap&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Poiret+One&display=swap&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700&display=swap');
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-image: url("../Images/pageBackground.jpg");
+    background-size: cover;
+    font-family: 'Quicksand', sans-serif;
+    width: 100%;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+#paneLogBar {
+    width: 100%;
+    margin: auto;
+}
+#napisLogoBar {
+    width: 100%;
+    margin: auto;
+    font-family: 'Poiret One', cursive;
+    font-size: 75px;
+    letter-spacing: 10px;
+    text-align: center;
+    padding-top: 20px;
+}
+#welcomeBar {
+    clear: both;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    padding-bottom: 5px;
+}
+#logOutBar {
+    clear: both;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    padding-bottom: 5px;
+}
+#lineUnderPanelLog {
+    clear: both;
+    height: 1px;
+    width: 100%;
+    background-color: #323232;
+    margin: auto;
+    padding-bottom: 20px;
+}
+#spisProduktow {
+    width: 100%;
+    text-align: center;
+    background-color: goldenrod;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 20px;
+    border-bottom: 18px solid #323232;
+}
+#spisForm {
+    clear: both;
+    text-align: center;
+    width: 80%;
+    font-size: 20px;
+    margin: auto;
+    background-color: rgba(232,104,92,0.4);
+    border-radius: 20px;
+    padding: 15px;
+}
+p {
+    text-align: center;
+    clear: both;
+    width: 100%;
+    padding: 2px;
+}
+#ButtonSzukaj {
+    width: 100%;
+    clear: both;
+    text-align: center;
+    font-family: 'Kulim Park', sans-serif;
+    padding-top: 5px;
+}
+#szukajButton {
+    width: 20%;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 3px;
+    font-size: 16px;
+}
+#szukajButton:hover {
+    background-color: #c81e0f;
+    color: white;
+}
+#kategoria {
+    width: 50%;
+    float: left;
+    margin: auto;
+    text-align: right;
+    padding-right: 5px;
+    font-family: 'Kulim Park', sans-serif;
+}
+#typWyszukiwania {
+    background-color: whitesmoke;
+    border-radius: 5px;
+    padding: 3px;
+    font-size: 16px;
+}
+#fraza {
+    width: 50%;
+    float: left;
+    margin: auto;
+    text-align: left;
+    padding-left: 5px;
+    font-family: 'Kulim Park', sans-serif;
+}
+#szukaj {
+    background-color: whitesmoke;
+    border-radius: 5px;
+    padding: 3px;
+    font-size: 16px;
+}
+#dodajPrzycisk {
+    clear: both;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+#addProductButton {
+    width: 20%;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 3px;
+    font-size: 16px;
+}
+#addProductButton:hover {
+    background-color: #c81e0f;
+    color: white;
+}
+#refreshForm {
+    clear: both;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    padding-top: 5px;
+}
+#refreshButton {
+    width: 20%;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 3px;
+    font-size: 16px;
+}
+#refreshButton:hover {
+    background-color: #c81e0f;
+    color: white;
+}
+#edytuj {
+    text-decoration: none;
+    color: darkgreen;
+    font-size: 14px;
+    font-family: 'Kulim Park', sans-serif;
+}
+#usun {
+    text-decoration: none;
+    color: #c81e0f;
+    font-size: 14px;
+    font-family: 'Kulim Park', sans-serif;
+}
+#footer {
+    width: 100%;
+    clear: both;
+    text-align: center;
+    margin: auto;
+}
+a#loginButton {
+    padding: 5px;
+}
+a#loginButton:hover {
+    background-color: #c81e0f;
+    color: white;
+}
+#loginButton:link, #loginButton:visited{
+    background-color:#f2685c; /* kolor wypełnienia*/
+    color:#323232; /* kolor napisu wewnątrz*/
+    text-align:center;
+    text-decoration:none;
+    border-radius: 10px;
+    font-family: 'Poiret One', cursive;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 0 8px #294680;
+    display:inline-block;
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 1%;
+}
+.table td,th {
+    font-size: 14px;
+    border-top: 1px solid #ddd;
+    padding: 5px 12px;
+    text-align: center;
+    vertical-align: top;
+}
+.table tbody tr:nth-child(even) td,tr {
+    background-color: #f3f3f3;
+}
