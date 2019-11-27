@@ -14,44 +14,55 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/registerStyl.css" type="text/css">
-    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/loginStyle.css" type="text/css">
     <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon" />
 </head>
 <body>
-<h1>Panel rejestracji</h1>
-<div id="registerForm">
-    <form action="${pageContext.request.contextPath}/register" method="get">
-        <div id="labele">
-            <label for="loginR">Login:</label>
-            <input type="text" name="rLogin" id="loginR" required/><br><br/>
-            <label for="hasloR">Hasło:</label>
-            <input type="password" name="rHaslo" id="hasloR" required/><br><br/>
-            <label for="hasloRepeat">Powtórz hasło:</label>
-            <input type="password" name="rHasloRepeat" id="hasloRepeat" required/><br><br/>
-            <label for="imie">Imię:</label>
-            <input type="text" name="rImie" id="imie" required/><br><br/>
-            <label for="nazwisko">Nazwisko:</label>
-            <input type="text" name="rNazwisko" id="nazwisko" required/><br><br/>
-            <label for="mail">Adres e-mail:</label>
-            <input type="email" name="rMail" id="mail" required/></div><br/>
+<div id="container">
 
-            <input type="submit" value="Zarejestruj" id="rejestrujButton"><br/>
+    <div id="panelBar">REJESTRACJA</div>
+    <div id="lineLogBar"></div>
+
+
+    <div id="registerForm">
+        <form action="${pageContext.request.contextPath}/register" method="get">
+
+            <div id="labelBar">
+                <input type="text" name="rLogin" class="field" placeholder="login" required/><br><br/>
+                <input type="password" name="rHaslo" class="field" placeholder="password" required/><br><br/>
+                <input type="password" name="rHasloRepeat" class="field" placeholder="repeat password" required/><br><br/>
+                <input type="text" name="rImie" class="field" placeholder="name" required/><br><br/>
+                <input type="text" name="rNazwisko" class="field" placeholder="surname" required/><br><br/>
+                <input type="email" name="rMail" class="field" placeholder="e-mail" required/>
+            </div>
+            <br/>
+
+            <div id="buttony">
+                <div id="rejestruj">
+                <input type="submit" value="Zarejestruj" id="rejestrujButton"><br/>
+                </div>
+
+                <div id="wroc">
+                    <a href=login.jsp> <input type="button" value="Powrót" id="wrocLog"> </a>
+                </div>
+            </div>
         <style type="text/css">
             h2{
             color:<%=request.getAttribute("alertColor") %>; }
         </style>
-          <h2>${alertMail}<br/>${alert}<br/> ${alert1}<br/> ${daneLogowania} <br/> ${daneLogowania1}</h2><%-- <h3>${passwordAlert} </h3><br/> --%>
+          <h2>${alertMail}
+              ${alert}
+              ${alert1}
+              ${daneLogowania}
+              ${daneLogowania1}</h2><%-- <h3>${passwordAlert} </h3><br/> --%>
 
     </form>
 
-        <p>Wróć na stronę logowania </p>
-<a href=login.jsp> <img src="Images/return.png" alt="Przenosi na poprzednią stronę" width="60" height="60" id="goBack"></a>
+    <div id="panelBottomLine"></div>
+    </div>
+    <div id="fieldEmpty"></div>
 
 </div>
-<div id="homeButtonDiv">
-    <p id="textHome">Powrót na stronę główną</p>
-    <a href=index.jsp id="homeButton"> <img src="Images/home.png" alt="Przenosi na stronę główną" width="60" height="60" id="przyciskHome"></a></div>
-<br/>
+</div>
 </body>
 <script>
     var password = document.getElementById("hasloR"), confirm_password = document.getElementById("hasloRepeat");

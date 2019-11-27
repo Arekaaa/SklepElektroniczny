@@ -1,54 +1,139 @@
-#registerForm{
-    height:850px;
-    width:600px;
-    background-color:silver;
-    display:block;
-    margin:auto;
-    border-radius: 15px;
-    font-family: Cambria, serif;
-    font-size:24pt;
-    color:#4299f0;
-    text-shadow:0 0 1px blue;
-    box-shadow: 0 0 15px blue;
+@import url('https://fonts.googleapis.com/css?family=Kulim+Park&display=swap&subset=latin-ext');
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
-#loginR{
-    margin-left:115px;
-    width:200px;
-    height:25px;
-    text-align:center;
+body{
+    background-image: url("../Images/pageBackground.jpg");
+    background-size: cover;
+    font-family: 'Quicksand', sans-serif;
+    width: 100%;
 }
-#hasloR{
-    margin-left:115px;
-    width:200px;
-    height:25px;
-    text-align:center;
+#container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
-#hasloRepeat{
-    width:200px;
-    height:25px;
-    text-align:center;
+#panelBar {
+    width: 100%;
+    margin: auto;
+    font-family: 'Quicksand', sans-serif;
+    opacity: 0.6;
+    padding-top: 45px;
+    font-size: 85px;
+    letter-spacing: 10px;
+    text-align: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
-#imie{
-    margin-left:135px;
-    width:200px;
-    height:25px;
-    text-align:center;
+#lineLogBar {
+    height: 2px;
+    width: 76%;
+    background-color: #323232;
+    margin: auto;
+    border-radius: 10px;
+    padding-bottom: 20px;
 }
-#nazwisko{
-    margin-left:65px;
-    width:200px;
-    height:25px;
-    text-align:center;
+#registerForm {
+    clear: both;
+    width: 80%;
+    background-color:rgba(192,192,192,0.3);
+    padding-top: 10px;
+    padding-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    text-align: center;
 }
-#mail{
-    margin-left:25px;
-    width:200px;
-    height:25px;
-    text-align:center;
+#labelBar {
+    margin: auto;
+    padding-top: 10px;
+    text-align: center;
+    font-family: 'Kulim Park', sans-serif;
 }
-#loginR:focus,#hasloR:focus,#hasloRepeat:focus,#imie:focus,#nazwisko:focus,#mail:focus{
-    outline: 4px solid #4299f0;
+a {
+    text-decoration: none;
 }
-#loginR:hover,#hasloR:hover,#hasloRepeat:hover,#imie:hover,#nazwisko:hover,#mail:hover{
-    background-color:#cce6ff;
+img {
+    margin: auto;
+}
+#buttony {
+    width: 100%;
+    margin: auto;
+}
+#rejestruj {
+    width: 50%;
+    float:right;
+    padding-left: 10px;
+}
+#wroc {
+    width: 50%;
+    float:left;
+    padding-right: 10px;
+}
+#rejestrujButton {
+    float: left;
+}
+#wrocLog {
+    float: right;
+}
+#panelBottomLine {
+    clear: both;
+    width: 100%;
+    padding-top: 10px;
+}
+#fieldEmpty {
+    clear: both;
+    width: 100%;
+    padding-top: 50px;
+}
+p#textHome {
+    text-align: center;
+    font-family: 'Kulim Park', sans-serif;
+}
+input[type=text]::placeholder {
+    color: darkslategrey;
+    opacity: 0.8;
+}
+input[type=text],
+input[type=password],
+input[type=email]
+{
+    width: 300px;
+    background-color: #efefef;
+    color: #666;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 10px;
+    box-sizing: border-box;
+    outline: none;
+    margin-top: 10px;
+}
+input[type=submit], input[type=button]
+{
+    width: 200px;
+    background-color: #f2685c;
+    font-family: 'Poiret One', cursive;
+    font-size:20px;
+    color: white;
+    padding: 15px 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    outline: none;
+    margin: auto;
+}
+input[type=submit]:focus, input[type=button]:focus
+{
+    -webkit-box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
+    -moz-box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
+    box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
+}
+input[type=submit]:hover, input[type=button]:hover
+{
+    background-color: #c81e0f;
 }
