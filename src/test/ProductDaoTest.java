@@ -210,13 +210,15 @@ class ProductDaoTest {
     }
 
     @Test
-    void showProducts(int poczatkowyProdukt, int rekordyNaStrone) {
+    void showProducts() {
         List<ProductBean> listaTestowa = new ArrayList<ProductBean>();
         LoginDao.preparingDB();
         preparingTableProducts();
         Connection connection=null;
         Statement statement=null;
         ResultSet resultSet=null;
+        int poczatkowyProdukt=0;
+        int rekordyNaStrone=10;
         ProductBean produktTestowy = new ProductBean();
         int sprawdzPoprawnosc=0;
         try {

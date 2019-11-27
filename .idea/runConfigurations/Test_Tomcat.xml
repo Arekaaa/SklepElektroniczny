@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Test&amp;Tomcat" type="CompoundRunConfigurationType">
-    <toRun name="test in SklepElektroniczny" type="JUnit" />
     <toRun name="Tomcat 9.0.27" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" />
+    <toRun name="Testy - SklepElektroniczny" type="JUnit" />
     <method v="2" />
   </configuration>
 </component>
