@@ -13,7 +13,7 @@
     <title>Dodaj produkt</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/productStyl.css" type="text/css">
+    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/productStyle.css" type="text/css">
     <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon" />
 </head>
 <body>
@@ -31,7 +31,7 @@
         </div>
 
         <div id="addButton">
-        <input type="submit" value="Dodaj produkt" id="dodajButton"><br/>
+        <input type="submit" value="Dodaj" id="dodajButton"><br/>
         <style type="text/css">
             h2{
                 color:<%=request.getAttribute("alertColor") %>; }
