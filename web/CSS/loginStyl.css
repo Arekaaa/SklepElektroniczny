@@ -75,6 +75,9 @@ p {
     padding: 3px;
     text-transform: uppercase;
 }
+p#textHome {
+    color: white;
+}
 input[type=text]::placeholder {
     color: darkslategrey;
     opacity: 0.8;
@@ -82,7 +85,7 @@ input[type=text]::placeholder {
 input[type=text],
 input[type=password]
 {
-    width: 300px;
+    width: 50%;
     background-color: #efefef;
     color: #666;
     border: 2px solid #ddd;
@@ -95,7 +98,7 @@ input[type=password]
 }
 input[type=submit]
 {
-    width: 300px;
+    width: 50%;
     background-color: #f2685c;
     font-family: 'Poiret One', cursive;
     font-size:20px;
@@ -128,4 +131,26 @@ input[type=password]:focus
     border: 1px solid #323232;
     background-color: #e9f3e9;
     color: #428c42;
+}
+@media screen and (min-width: 600px) and (max-width: 800px){
+    #logoBar {
+        font-size: 65px;
+    }
+    input[type=submit] {
+        font-size: 15px;
+    }
+    p {
+        font-size: 14px;
+    }
+}
+@media screen and (min-width: 200px) and (max-width: 599px){
+    #logoBar {
+        font-size: 45px;
+    }
+    input[type=submit] {
+        font-size: 10px;
+    }
+    p {
+        font-size: 10px;
+    }
 }
