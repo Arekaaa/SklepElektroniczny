@@ -16,7 +16,7 @@
     <title>Sklep Elektroniczny</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/userrLoggedStyl.css" type="text/css">
+    <link rel="Stylesheet" href="${pageContext.request.contextPath}/CSS/userrLoggedStyle.css" type="text/css">
     <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon" />
 </head>
 <body>
@@ -37,7 +37,7 @@
 
     <div id="spisProduktow">
         <h1>Spis produktów sklepu: </h1>
-        <p>Sklep posiada: ${iloscProduktow} produkty/ów, które są warte: ${kwotaProduktow} zł.</p>
+        <p>Sklep posiada: ${iloscProduktow} produkty/ów, o łącznej wartości: ${kwotaProduktow} zł.</p>
     </div>
 
     <div id="spisForm">
@@ -58,7 +58,7 @@
                 </select>
         </div>
         <div id="fraza">
-            <label for="szukaj" id="labelSzukaj">Wprowadź wyszukiwaną frazę: </label>
+            <label for="szukaj" id="labelSzukaj">Wpisz szuk. fraze: </label>
             <br/>
             <input type="text" name="szukaj" id="szukaj" required>
         </div>
@@ -103,7 +103,7 @@
                     <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Cena&descOrAsc=DESC" >
                     <img src="Images/arrow-down.png" id="descCena" alt="Sortuje malejąco cenę" width="20" height="20"></a>
                 </th>
-                <th>Ilość<br/>(w sztukach)<br/>
+                <th>Ilość<br/>(szt.)<br/>
                     <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Ilosc&descOrAsc=ASC" >
                     <img src="Images/arrow-up.png" id="ascIlosc" alt="Sortuje rosnąco ilością" width="20" height="20"></a>
                     <a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=Ilosc&descOrAsc=DESC" >
