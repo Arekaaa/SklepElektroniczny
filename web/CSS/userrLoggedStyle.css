@@ -239,6 +239,9 @@ a#loginButton:hover {
     .table tr th {
         font-size: 14px;
     }
+    .table tr td {
+        font-size: 12px;
+    }
 }
 @media screen and (min-width: 200px) and (max-width: 599px){
     #napisLogoBar{
@@ -265,5 +268,8 @@ a#loginButton:hover {
     }
     .table tr th {
         font-size: 12px;
+    }
+    .table tr td {
+        font-size: 8px;
     }
 }
