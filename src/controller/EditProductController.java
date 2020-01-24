@@ -32,7 +32,7 @@ public class EditProductController extends HttpServlet {
             }
             else{
                 request.setAttribute("alertColor", "red");
-                request.setAttribute("alert", "Błąd podczas edycji produktu!");
+                request.setAttribute("alert", "Wystąpił błąd związany z edycją produktu! Spróbuj ponownie.");
                 request.getRequestDispatcher("productChanged.jsp").forward(request, response);
             }
         } catch (NumberFormatException | ServletException e) {

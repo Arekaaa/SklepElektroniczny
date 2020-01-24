@@ -28,8 +28,8 @@
 
             <div id="labelBar">
                 <input type="text" name="rLogin" class="field" placeholder="login" required/><br><br/>
-                <input type="password" name="rHaslo" class="field" placeholder="password" required/><br><br/>
-                <input type="password" name="rHasloRepeat" class="field" placeholder="repeat password" required/><br><br/>
+                <input type="password"  id="haslo" name="rHaslo" class="field" placeholder="password" required/><br><br/>
+                <input type="password" id="hasloRepeat" name="rHasloRepeat" class="field" placeholder="repeat password" required/><br><br/>
                 <input type="text" name="rImie" class="field" placeholder="name" required/><br><br/>
                 <input type="text" name="rNazwisko" class="field" placeholder="surname" required/><br><br/>
                 <input type="email" name="rMail" class="field" placeholder="e-mail" required/>
@@ -51,7 +51,7 @@
         </style>
           <h2>${alertMail}
               ${alert}
-              ${alert1}
+              ${alert2} </br>
               ${daneLogowania}
               ${daneLogowania1}</h2><%-- <h3>${passwordAlert} </h3><br/> --%>
 
@@ -65,7 +65,7 @@
 </div>
 </body>
 <script>
-    var password = document.getElementById("hasloR"), confirm_password = document.getElementById("hasloRepeat");
+    var password = document.getElementById("haslo"), confirm_password = document.getElementById("hasloRepeat");
 
     function validatePassword(){
         if(password.value != confirm_password.value) {

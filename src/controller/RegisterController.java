@@ -28,13 +28,13 @@ public class RegisterController extends HttpServlet {
                 if (user.isZarejestrowany()) {
                     request.setAttribute("alertColor", "green");
                     request.setAttribute("alert", "Zarejestrowano !");
-                    request.setAttribute("alert1", "Zapamiętaj swoje dane podawane podczas logowania: ");
+                    request.setAttribute("alert2", "Twoje dane logowania to: ");
                     request.setAttribute("daneLogowania", "Login: " + user.getLogin());
                     request.setAttribute("daneLogowania1", "Hasło: " + user.getHaslo());
                     request.getRequestDispatcher("register.jsp").forward(request, response);
                     //return --> tu nie trzeba return poniewaz nie ma juz w kodzie nastepnego bloku try/catch wiec nie trzeba sprawdzac nastepnych blokow
                 } else {
-                    request.setAttribute("alert", "red");
+                    request.setAttribute("alertColor", "red");
                     request.setAttribute("alert", "Taki login lub adres e-mail jest już zajęty! Spróbuj ponownie.");
                     request.getRequestDispatcher("register.jsp").forward(request, response);
                 }

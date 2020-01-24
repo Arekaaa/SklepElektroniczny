@@ -58,7 +58,4 @@ public class ProductBean {
     public void setDodany(boolean dodany) {
         this.dodany = dodany;
     }
-
-
-
 }

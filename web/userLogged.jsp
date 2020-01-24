@@ -129,7 +129,7 @@
     <c:when test="${rodzajPaginacji ==0}">
     <table align="center">
         <tr>
-            <c:if test="${biezacaStrona != 1}"><%-- Jeśli strona jest nie rowna 1 to mozna isc na poprzednia strone --%>
+            <c:if test="${biezacaStrona != 1}"><%-- Jeśli strona nie jest rowna 1 to mozna isc na poprzednia strone --%>
                 <td><a href="${pageContext.request.contextPath}/showProduct?strona=${biezacaStrona - 1}"> << </a></td>
             </c:if>
             <c:forEach begin="1" end="${liczbaStron}" var="i">
@@ -151,7 +151,7 @@
     <c:when test="${rodzajPaginacji ==1}">
         <table align="center">
             <tr>
-                <c:if test="${biezacaStrona != 1}"><%-- Jeśli strona jest nie rowna 1 to mozna isc na poprzednia strone --%>
+                <c:if test="${biezacaStrona != 1}"><%-- Jeśli strona nie jest równa 1 to mozna isc na poprzednia strone --%>
                     <td><a href="${pageContext.request.contextPath}/sortProduct?typ=<c:out value='${typWyszukiwania}'/>&wartosc=<c:out value='${wprowadzonaWartosc}'/>&metoda=<c:out value='${metoda}'/>&sortID=<c:out value='${sortID}'/>&descOrAsc=<c:out value='${descOrAsc}'/>&strona=${biezacaStrona - 1}"> << </a></td>
                 </c:if>
                 <c:forEach begin="1" end="${liczbaStron}" var="i">
@@ -173,7 +173,7 @@
         <c:when test="${rodzajPaginacji ==2}">
             <table align="center">
                 <tr>
-                    <c:if test="${biezacaStrona != 1}"><%-- Jeśli strona jest nie rowna 1 to mozna isc na poprzednia strone --%>
+                    <c:if test="${biezacaStrona != 1}"><%-- Jeśli strona nie jest równa 1 to mozna isc na poprzednia strone --%>
                         <td><a href="${pageContext.request.contextPath}/searchProduct?typWyszukiwania=<c:out value='${typWyszukiwania}'/>&szukaj=<c:out value='${wprowadzonaWartosc}'/>&strona=${biezacaStrona - 1}"> << </a></td>
                     </c:if>
                     <c:forEach begin="1" end="${liczbaStron}" var="i">

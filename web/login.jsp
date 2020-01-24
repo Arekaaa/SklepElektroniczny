@@ -31,12 +31,12 @@
     <div id="loginFormBar">
         <form action="${pageContext.request.contextPath}/login" method="get">
             <div id="labelBar">
-                <input type="text" name="login" id="login" required/><br><br/>
-                <input type="password" name="haslo" id="haslo" required/>
+                <input type="text" name="login" id="login" placeholder="login" required/><br><br/>
+                <input type="password" name="haslo" id="haslo" placeholder="password" required/>
             </div><br/>
 
         <input type="submit" value="Zaloguj" id="zalogujButton"><br/>
-        <h2>${alert} </h2>
+        <p>${alert} </p>
     </form>
 
         <form action="register.jsp" method="get">

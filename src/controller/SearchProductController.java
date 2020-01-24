@@ -61,7 +61,7 @@ public class SearchProductController extends HttpServlet {
                     request.setAttribute("biezacaStrona", strona);
                     request.getRequestDispatcher("userLogged.jsp").forward(request, response);
                 }
-            } catch (ServletException e) {
+            } catch (NumberFormatException | ServletException e) {
             e.printStackTrace();
             throw new RuntimeException("Błąd związany z servletem SearchProduct");
             }

@@ -28,6 +28,5 @@ public class ShowByIDController extends HttpServlet {
             e.printStackTrace();
             throw new RuntimeException("Błąd związany z servletem ShowByID");
         }
-        //response.sendRedirect("editProduct.jsp"); //Obsługuje IOException
     }
 }

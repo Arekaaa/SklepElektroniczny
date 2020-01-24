@@ -7,7 +7,6 @@ import dao.ProductDao;
 import org.junit.jupiter.api.Test;
 
 
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ProductDaoTest {
 
     @Test
-    void connectJDBCTest(){
+    void connectionToCreateDBTest(){
         Connection connection=null;
         try {
             connection = ConnectionManager.connectionToCreateDB();
@@ -33,6 +32,25 @@ class ProductDaoTest {
         }
         assertNotNull(connection); // Sprawdza czy połączenie z bazą danych nie jest nullem. Jeśli jest to błąd
     }
+
+    @Test
+    void connectionOthersTest(){
+        Connection connection2=null;
+        try {
+            connection2 = ConnectionManager.connectionOthers();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            if (connection2 != null) {
+                try {
+                    connection2.close();
+                } catch (SQLException e) { /* */}
+            }
+        }
+        assertNotNull(connection2); // Sprawdza czy połączenie z bazą danych nie jest nullem. Jeśli jest to błąd
+    }
+
     @Test
     void preparingTableProducts() {
         Connection connection = null;
@@ -179,7 +197,7 @@ class ProductDaoTest {
         ProductBean product = new ProductBean();
         Connection connection=null;
         Statement statement=null;
-        product.setId(99999); // Na potrzeby testu przyjęto numer ID jako 99999
+        product.setId(-3); // Na potrzeby testu przyjęto numer ID jako 99999
         Integer id = product.getId();
         try {
             String deleteProduct = "DELETE FROM produkty WHERE ID ='"+id+"'";
@@ -206,7 +224,7 @@ class ProductDaoTest {
             }
         }
         assertNotNull(connection);
-        assertNotNull(id); // Sprawdza czy ID po których usuwa się produkty z bazy danych nie jest nullem. Jeśli jest to błąd
+        assertEquals(-3,id); // Sprawdza czy ID po których usuwa się produkty z bazy danych jest równe -3.
     }
 
     @Test
@@ -219,27 +237,23 @@ class ProductDaoTest {
         ResultSet resultSet=null;
         int poczatkowyProdukt=0;
         int rekordyNaStrone=10;
-        ProductBean produktTestowy = new ProductBean();
         int sprawdzPoprawnosc=0;
+        ProductBean produktTestowy = new ProductBean();
         try {
             String showDefaultProducts = "SELECT * FROM produkty LIMIT " + poczatkowyProdukt+ ", " + rekordyNaStrone;
 
             connection = ConnectionManager.connectionOthers();
             statement = connection.createStatement();
             resultSet = statement.executeQuery(showDefaultProducts);
-            if(!resultSet.next()){
-                sprawdzPoprawnosc=1;
-            }
-            else {
-                do{
+            sprawdzPoprawnosc=1;
+            if(resultSet.next()){
                     produktTestowy.setId(resultSet.getInt("ID"));
                     produktTestowy.setNazwa(resultSet.getString("Nazwa"));
                     produktTestowy.setProducent(resultSet.getString("Producent"));
                     produktTestowy.setCena(resultSet.getFloat("Cena"));
                     produktTestowy.setIlosc(resultSet.getInt("Ilosc"));
                     listaTestowa.add(produktTestowy);
-                }while (resultSet.next());
-            }
+                }
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
@@ -262,7 +276,10 @@ class ProductDaoTest {
             }
         }
         assertNotNull(connection);
-        assertFalse(listaTestowa.isEmpty()); // sprawdza czy lista nie jest pusta. Jeśli by była to test failed
+        assertEquals(1,sprawdzPoprawnosc);
+        //assertFalse(listaTestowa.isEmpty()); // sprawdza czy lista nie jest pusta. Jeśli by była to test failed
         //assertTrue(sprawdzPoprawnosc==1 || sprawdzPoprawnosc==2);
+
+        //SPRAWDZ POPRAWNOSC KAZDEGO ODWOLANIA DO BAZY przez zmienną sprawdzpoprawność jak w przykladzie na poczatku
     }
 }

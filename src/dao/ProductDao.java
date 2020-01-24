@@ -53,6 +53,8 @@ public class ProductDao {
     }
 
     public void sumujRekordy(){
+        LoginDao.preparingDB();
+        preparingTableProducts();
         try {
             String sumujRekordy ="SELECT COUNT(1) FROM produkty";
 
@@ -343,7 +345,7 @@ public class ProductDao {
             }
             statement = connection.createStatement();
             resultSet = statement.executeQuery(searchProductQuery);
-            if(resultSet.next()){{
+            if(resultSet.next()){
                     produkt.setId(resultSet.getInt("ID"));
                     produkt.setNazwa(resultSet.getString("Nazwa"));
                     produkt.setProducent(resultSet.getString("Producent"));
@@ -351,7 +353,6 @@ public class ProductDao {
                     produkt.setIlosc(resultSet.getInt("Ilosc"));
                     produktById.add(produkt);
                 }
-            }
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
@@ -376,41 +377,41 @@ public class ProductDao {
         return produktById;
     }
 
-        public void editProduct(ProductBean product){
-            int id = product.getId();
-            String nazwa = product.getNazwa();
-            String producent = product.getProducent();
-            float cena = product.getCena();
-            int ilosc = product.getIlosc();
+    public void editProduct(ProductBean product){
+        int id = product.getId();
+        String nazwa = product.getNazwa();
+        String producent = product.getProducent();
+        float cena = product.getCena();
+        int ilosc = product.getIlosc();
 
-                try {
-                    String updateProduct = "UPDATE produkty SET Nazwa = '"+nazwa+ "',"+ "Producent = '"+producent+ "',"+"Cena ='"+cena+"',"+"Ilosc ='"+ilosc+"'"+"WHERE ID ='"+id+"'";
+        try {
+            String updateProduct = "UPDATE produkty SET Nazwa = '"+nazwa+ "',"+ "Producent = '"+producent+ "',"+"Cena ='"+cena+"',"+"Ilosc ='"+ilosc+"'"+"WHERE ID ='"+id+"'";
 
-                    connection = ConnectionManager.connectionOthers();
-                    if (connection == null) {
-                        throw new RuntimeException("Brak połączenia z bazą danych");
-                    }
-                    statement = connection.createStatement();
-                    statement.executeUpdate(updateProduct);
-                    product.setDodany(true);
-                    //showProducts();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
-                }
-                finally {
-                    if (statement != null) {
-                        try {
-                            statement.close();
-                        } catch (SQLException e) { /* */}
-                    }
-                    if (connection != null) {
-                        try {
-                            connection.close();
-                        } catch (SQLException e) { /* */}
-                    }
-                }
+            connection = ConnectionManager.connectionOthers();
+            if (connection == null) {
+                throw new RuntimeException("Brak połączenia z bazą danych");
             }
+            statement = connection.createStatement();
+            statement.executeUpdate(updateProduct);
+            product.setDodany(true);
+            //showProducts();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Wyjątek związany z błędną składnią SQL");
+        }
+        finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) { /* */}
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) { /* */}
+            }
+        }
+    }
 
     public void deleteProduct(ProductBean product) {
         int id = product.getId();

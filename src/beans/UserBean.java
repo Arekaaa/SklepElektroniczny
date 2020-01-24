@@ -26,9 +26,7 @@ public class UserBean {
         this.haslo = haslo;
     }
 
-    public String getHasloRepeat() {
-        return hasloRepeat;
-    }
+    public String getHasloRepeat() { return hasloRepeat; }
 
     public void setHasloRepeat(String hasloRepeat) {
         this.hasloRepeat = hasloRepeat;

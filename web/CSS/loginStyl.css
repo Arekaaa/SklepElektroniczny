@@ -69,12 +69,12 @@ body{
     display: block;
 }
 p {
-    text-align: center;
-    letter-spacing: 3px;
-    font-family: 'Kulim Park', sans-serif;
-    padding: 3px;
-    text-transform: uppercase;
-}
+     text-align: center;
+     letter-spacing: 3px;
+     font-family: 'Kulim Park', sans-serif;
+     padding: 3px;
+     text-transform: uppercase;
+ }
 p#textHome {
     color: white;
 }
